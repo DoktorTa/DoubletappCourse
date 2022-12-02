@@ -15,7 +15,9 @@
 
         <activity
             android:name=".ui.ActivityScore"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:theme="@style/Theme.HomeWork2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +28,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity
+            android:name=".ui.ActivitySquareScore"
+            android:exported="true"
+            android:theme="@style/Theme.HomeWork2.black">
+        </activity>
+
     </application>
 
 </manifest>

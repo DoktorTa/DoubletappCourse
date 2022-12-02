@@ -1,15 +1,16 @@
 package course.doubletapp.homework2.vm
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+
 
 class ScoreViewModel: ViewModel() {
 
-    private var _score: Int = 0
-    val score: Int
-        get() = _score
+    val score: MutableLiveData<Int> = MutableLiveData(0)
 
     val squareScore: Int
-        get() = _score * _score
+        get() = score.value!! * score.value!!
 
-    fun addScore() { _score++ }
+    fun addScore() { score.value = score.value!! + 1 }
 }
