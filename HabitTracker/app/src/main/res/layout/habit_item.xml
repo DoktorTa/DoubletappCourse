@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/descriptionHabit"
-        style="@style/StandartHabitText"
+        style="@style/StandardHabitText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
@@ -30,7 +30,7 @@
 
     <TextView
         android:id="@+id/infoHabit"
-        style="@style/StandartHabitText"
+        style="@style/StandardHabitText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"

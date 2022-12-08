@@ -10,10 +10,10 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="@dimen/name_and_description_tile_size"
+        android:layout_margin="@dimen/tile_margin"
+        android:layout_marginStart="@dimen/tile_margin"
+        android:layout_marginTop="@dimen/tile_margin"
         android:background="?attr/colorSecondary"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,18 +21,19 @@
 
         <EditText
             android:id="@+id/nameHabit"
-
-            android:layout_margin="6dp"
+            android:layout_margin="@dimen/text_margin"
             style="@style/NameHabitText"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/name_habit" />
 
         <EditText
             android:id="@+id/descriptionHabit"
-            android:layout_marginStart="6dp"
-            android:layout_marginBottom="6dp"
-            style="@style/StandartHabitText"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginBottom="@dimen/text_margin"
+            style="@style/StandardHabitText"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/description" />
@@ -40,10 +41,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/spinner_layout"
+
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/tile_size"
         android:background="?attr/colorSecondary"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/tile_margin"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -84,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/good"
-                style="@style/StandartHabitText"
+                style="@style/StandardHabitText"
                 tools:layout_editor_absoluteX="252dp"
                 tools:layout_editor_absoluteY="0dp"
                 android:buttonTint="@color/white"/>
@@ -94,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bad"
-                style="@style/StandartHabitText"
+                style="@style/StandardHabitText"
                 android:textColor="@color/white"
                 tools:layout_editor_absoluteX="252dp"
                 tools:layout_editor_absoluteY="0dp"
@@ -107,8 +109,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_margin="5dp"
+        android:layout_height="@dimen/tile_size"
+        android:layout_margin="@dimen/tile_margin"
 
         android:background="?attr/colorSecondary"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,12 +118,10 @@
 
         <EditText
             android:id="@+id/periodHabit"
-            style="@style/StandartHabitTextRevers"
+            style="@style/StandardHabitValue"
             android:layout_width="100dp"
             android:layout_height="18dp"
             android:layout_marginStart="15dp"
-
-            android:background="?attr/colorPrimary"
 
             android:hint="@string/period"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -130,12 +130,10 @@
 
         <EditText
             android:id="@+id/countHabit"
-            style="@style/StandartHabitTextRevers"
+            style="@style/StandardHabitValue"
             android:layout_width="100dp"
             android:layout_height="18dp"
             android:layout_marginEnd="15dp"
-
-            android:background="?attr/colorPrimary"
 
             android:hint="@string/count"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -144,23 +142,50 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
-        android:id="@+id/colorPickerLayout"
 
+    <View
+        android:id="@+id/topLineColorSelector"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="1dp"
         android:background="?attr/colorSecondary"
         android:layout_margin="5dp"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        />
 
-        <HorizontalScrollView
-            android:id="@+id/colorPicker"
+    <HorizontalScrollView
+        android:id="@+id/colorPicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topLineColorSelector"
+        >
+
+        <RadioGroup
+            android:id="@+id/colorSquare"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="match_parent"/>
 
-    </RelativeLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/buttomLineColorSelector"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorSecondary"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorPicker"
+        />
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -175,16 +200,17 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="@string/cansel"
-            style="@style/StandartHabitText"
+            style="@style/StandardHabitText"
             android:background="@android:color/transparent"
             android:layout_weight="1"/>
 
         <Button
+            android:id="@+id/okButton"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:text="@string/ok"
             android:layout_weight="1"
-            style="@style/StandartHabitText"
+            style="@style/StandardHabitText"
             android:background="@android:color/transparent"/>
 
     </LinearLayout>

@@ -3,19 +3,19 @@
     <style name="NameHabitText">
         <item name="android:textColorHint">?attr/colorPrimary</item>
         <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLength">@integer/max_len_name_habit</item>
     </style>
 
-    <style name="StandartHabitText">
+    <style name="StandardHabitText">
         <item name="android:textColorHint">?attr/colorPrimary</item>
         <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLength">@integer/max_len_description_habit</item>
     </style>
 
-    <style name="StandartHabitTextRevers">
-        <item name="android:textColorHint">?attr/colorSecondary</item>
-        <item name="android:textColor">?attr/colorSecondary</item>
-        <item name="android:textSize">12sp</item>
+    <style name="StandardHabitValue" parent="StandardHabitText">
+        <item name="android:maxLength">@integer/max_len_value_habit</item>
     </style>
 
     <style name="CustomSpinner" parent="Widget.AppCompat.Spinner">
