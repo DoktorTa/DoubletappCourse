@@ -49,24 +49,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <RelativeLayout
-            android:layout_width="100dp"
+        <Spinner
+            android:id="@+id/spinnerPriorityHabit"
+            style="@style/StandardHabitTextRevers"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:background="?attr/colorPrimary"
-            android:layout_marginStart="@dimen/text_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+            android:layout_margin="0dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:dropDownSelector="@drawable/ic_spinner_arrow_24"
 
-            <Spinner
-                android:id="@+id/spinnerPriorityHabit"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:backgroundTint="?attr/colorSecondary"
-                android:dropDownSelector="@drawable/ic_spinner_arrow_24"/>
-        </RelativeLayout>
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/text_margin"/>
 
         <RadioGroup
             android:id="@+id/typeHabit"
@@ -76,10 +69,7 @@
             android:layout_marginEnd="@dimen/text_margin"
             android:orientation="horizontal"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_alignParentEnd="true">
 
             <RadioButton
                 android:id="@+id/Good"
@@ -145,9 +135,10 @@
         android:background="?attr/colorSecondary"
 
         android:layout_margin="@dimen/tile_margin"
-
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
 
         <HorizontalScrollView
             android:id="@+id/colorPicker"
@@ -157,9 +148,12 @@
             android:layout_marginStart="@dimen/color_picker_margin"
             android:layout_marginTop="@dimen/color_picker_margin"
             android:layout_marginEnd="@dimen/color_picker_margin"
-            android:layout_marginBottom="@dimen/color_picker_margin">
+            android:layout_marginBottom="@dimen/color_picker_margin"
+            >
 
             <RadioGroup
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
                 android:id="@+id/colorSquare"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -182,11 +176,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topLineColorSelector">
 
-    <View
-        android:id="@+id/colorSelectedSquare"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:layout_margin="@dimen/color_picker_margin"/>
+        <View
+            android:id="@+id/colorSelectedSquare"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/color_picker_margin"
+            android:layout_marginEnd="@dimen/color_picker_margin"
+            android:layout_marginBottom="@dimen/color_picker_margin" />
     </RelativeLayout>
 
     <LinearLayout
@@ -196,9 +192,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        >
 
         <Button
+            android:id="@+id/canselButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/cansel"

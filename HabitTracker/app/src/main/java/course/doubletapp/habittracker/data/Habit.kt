@@ -6,7 +6,8 @@ data class Habit(
     var priority: PriorityHabit,
     var type: TypeHabit,
     var countDay: Int,
-    var period: Int
+    var period: Int,
+    var color: Int
 ) {}
 
 enum class TypeHabit(

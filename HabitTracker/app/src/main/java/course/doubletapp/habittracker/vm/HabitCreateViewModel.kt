@@ -16,9 +16,10 @@ class HabitCreateViewModel(
         priority: PriorityHabit,
         type: TypeHabit,
         countDay: Int,
-        period: Int
+        period: Int,
+        color: Int
     ){
-        useCase.addHabit(Habit(name, description, priority, type, countDay, period))
+        useCase.addHabit(Habit(name, description, priority, type, countDay, period, color))
     }
 
 
