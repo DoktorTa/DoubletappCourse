@@ -4,5 +4,6 @@
     <dimen name="tile_size">72dp</dimen>
     <dimen name="tile_margin">5dp</dimen>
     <dimen name="text_margin">5dp</dimen>
+    <dimen name="color_picker_margin">1dp</dimen>
 
 </resources>

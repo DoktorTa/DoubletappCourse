@@ -2,6 +2,8 @@ package course.doubletapp.habittracker.ui.habitcreate
 
 import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
@@ -47,12 +49,6 @@ class HabitCreateFragment: Fragment() {
             radioButton.setBackgroundResource(R.drawable.radio_selecter)
             radioButton.buttonDrawable = null
 
-
-//            val params = LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT,
-//                LinearLayout.LayoutParams.WRAP_CONTENT
-//            )
-
             val params = LinearLayout.LayoutParams(50.dp, 50.dp)
 
             params.leftMargin = 10.dp
@@ -64,9 +60,17 @@ class HabitCreateFragment: Fragment() {
             radioButton.textSize = 1F
             radioButton.setTextColor(android.R.color.transparent.toInt())
 
+            radioButton.setOnClickListener{view -> changeColorSelectedSquare(view, radioButton.text!!.toString().toInt())}
 
             radioGroup.addView(radioButton)
         }
+        radioGroup.defaultFocusHighlightEnabled = true
+    }
+
+    private fun changeColorSelectedSquare(view: View, idColor: Int){
+//        val colorHSV = Color.colorToHSV(1, floatArrayOf(idColor.toFloat(), 0.9f, 1f))
+        val background = ColorDrawable(idColor)
+        binding.colorSelectedSquare.background = background
     }
 
     private fun toastColorSelect(view: View){

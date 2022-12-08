@@ -22,4 +22,8 @@
         <item name="background">@android:color/white</item>
     </style>
 
+    <style name="CustomRadioButton" parent="StandardHabitText">
+        <item name="buttonTint">?attr/colorPrimary</item>
+    </style>
+
 </resources>
