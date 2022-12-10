@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">HabitTracker</string>
+    <string name="period">Period</string>
+    <string name="count">Count</string>
+    <string name="bad">Bad</string>
+    <string name="good">Good</string>
+    <string name="description">Description</string>
+    <string name="name_habit">Name habit</string>
+    <string name="cansel">CANSEL</string>
+    <string name="ok">OK</string>
+    <string name="remove_habit">Remove habit</string>
+    <string name="edit_habit">Edit habit</string>
+
+    <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>
 </resources>

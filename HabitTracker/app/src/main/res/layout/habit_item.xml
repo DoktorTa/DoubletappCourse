@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/descriptionHabit"
-        style="@style/StandartHabitText"
+        style="@style/StandardHabitText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
@@ -30,7 +30,7 @@
 
     <TextView
         android:id="@+id/infoHabit"
-        style="@style/StandartHabitText"
+        style="@style/StandardHabitText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -39,6 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/descriptionHabit" />
 
     <View
+        android:id="@+id/colorHabit"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:background="@color/purple_200"
