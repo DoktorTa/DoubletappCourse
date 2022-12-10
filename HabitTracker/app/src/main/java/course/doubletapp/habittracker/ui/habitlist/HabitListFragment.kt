@@ -3,25 +3,21 @@ package course.doubletapp.habittracker.ui.habitlist
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import course.doubletapp.habittracker.R
+import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.databinding.FragmentHabitListBinding
 import course.doubletapp.habittracker.ui.habitcreate.HabitCreateActivity
 import course.doubletapp.habittracker.vm.HabitListViewModel
 
-class HabitListFragment(
-    private val habitListViewModel: HabitListViewModel
-): Fragment(), GoToHabitCreateListener {
+class HabitListFragment: Fragment(), GoToHabitCreateListener {
 
     private lateinit var binding: FragmentHabitListBinding
     private lateinit var adapter: HabitListRecyclerAdapter
+    private lateinit var habitListViewModel: HabitListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +28,7 @@ class HabitListFragment(
         binding = FragmentHabitListBinding.inflate(inflater)
 
         if (isAdded) {
+            createViewModel()
             setRecyclerView()
             setObservers()
         }
@@ -39,6 +36,10 @@ class HabitListFragment(
         return binding.root
     }
 
+    private fun createViewModel(){
+        val habitUseCase = (requireActivity().application as HabitTrackerApplication).ticketUseCase
+        habitListViewModel = HabitListViewModel(habitUseCase)
+    }
 
     private fun setObservers(){
         habitListViewModel.allHabits.observe(viewLifecycleOwner) {
@@ -60,12 +61,15 @@ class HabitListFragment(
     }
 
     private fun setRecyclerView(){
-        adapter = HabitListRecyclerAdapter(requireContext(), habitListViewModel, this)
-
         val habitList = binding.habitListRecyclerView
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        habitList.layoutManager = layoutManager
+
+        adapter = HabitListRecyclerAdapter(
+            requireContext(), habitListViewModel, this)
         habitList.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(
+            context, LinearLayoutManager.VERTICAL, false)
+        habitList.layoutManager = layoutManager
     }
 
     override fun goToHabitCreateListener(name: String) {

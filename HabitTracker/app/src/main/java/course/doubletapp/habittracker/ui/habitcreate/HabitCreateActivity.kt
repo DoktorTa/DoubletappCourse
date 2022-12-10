@@ -1,6 +1,5 @@
 package course.doubletapp.habittracker.ui.habitcreate
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import course.doubletapp.habittracker.HabitTrackerApplication
@@ -13,12 +12,9 @@ class HabitCreateActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_habit_create)
 
-        val habitUseCase = (application as HabitTrackerApplication).ticketUseCase
-        val habitCreateViewModel = HabitCreateViewModel(habitUseCase)
-
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragmentHabitCreate, HabitCreateFragment(habitCreateViewModel))
+            .add(R.id.fragmentHabitCreate, HabitCreateFragment())
             .commit()
     }
 }

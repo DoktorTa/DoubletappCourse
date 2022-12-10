@@ -2,7 +2,6 @@ package course.doubletapp.habittracker.ui.habitcreate
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
+import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
@@ -18,12 +18,11 @@ import course.doubletapp.habittracker.ui.habitlist.HabitListActivity
 import course.doubletapp.habittracker.vm.HabitCreateViewModel
 
 
-class HabitCreateFragment(
-    private val habitCreateViewModel: HabitCreateViewModel
-): Fragment() {
+class HabitCreateFragment: Fragment() {
 
     private lateinit var binding: FragmentHabitCreateBinding
     private lateinit var colorPicker: ColorHabitPicker
+    private lateinit var habitCreateViewModel: HabitCreateViewModel
 
     private var typeHabit: String? = null
 
@@ -36,6 +35,7 @@ class HabitCreateFragment(
         binding = FragmentHabitCreateBinding.inflate(inflater)
 
         if (isAdded) {
+            createViewModel()
             createColorPicker()
             setObserver()
             setSpinnerAdapter()
@@ -50,15 +50,18 @@ class HabitCreateFragment(
         return binding.root
     }
 
+    private fun createViewModel(){
+        val habitUseCase = (requireActivity().application as HabitTrackerApplication).ticketUseCase
+        habitCreateViewModel = HabitCreateViewModel(habitUseCase)
+    }
+
     private fun loadHabitField(habit: Habit){
         binding.nameHabit.setText(habit.name)
         binding.descriptionHabit.setText(habit.description)
-
         binding.countHabit.setText(habit.countDay.toString())
-
         binding.periodHabit.setText(habit.period.toString())
 
-        colorPicker.selectedColor = habit.color
+        colorPicker.changeColorSelectedSquare(habit.color)
         typeHabit = habit.type
 
         val spinnerPos: Int = PriorityHabit.values().map{it.toString()}.indexOf(habit.priority)
@@ -70,7 +73,7 @@ class HabitCreateFragment(
         val typesHabit = TypeHabit.values().map{it.toString()}
 
         for (type in typesHabit) {
-            val radioButton: RadioButton = RadioButton(context)
+            val radioButton = RadioButton(context)
             radioButton.setText(type)
             if (type == typeHabit) {
                 radioButton.isChecked = true

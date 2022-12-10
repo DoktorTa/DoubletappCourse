@@ -56,14 +56,13 @@ class ColorHabitPicker(
         radioButton.setTextColor(android.R.color.transparent.toInt())
 
         radioButton.setOnClickListener{
-                view -> changeColorSelectedSquare(view, color.toInt())
+                changeColorSelectedSquare(color.toInt())
         }
         return radioButton
     }
 
     // TODO: Переделать с хардкор кода.
     private fun getLayoutParams(): LinearLayout.LayoutParams{
-//        Log.d("ColorHabitPicker", context.resources.getDimension(R.dimen.tile_size).toString())
         val params = LinearLayout.LayoutParams(44.dp, 44.dp)
         params.topMargin = 14.dp
         params.bottomMargin = 14.dp
@@ -72,7 +71,7 @@ class ColorHabitPicker(
         return params
     }
 
-    private fun changeColorSelectedSquare(view: View, idColor: Int){
+    fun changeColorSelectedSquare(idColor: Int){
         val background = ColorDrawable(idColor)
         selectedColor = idColor
         colorSelectedSquare.background = background
