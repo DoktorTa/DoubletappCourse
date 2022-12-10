@@ -8,4 +8,6 @@
     <string name="name_habit">Name habit</string>
     <string name="cansel">CANSEL</string>
     <string name="ok">OK</string>
+    <string name="remove_habit">Remove habit</string>
+    <string name="edit_habit">Edit habit</string>
 </resources>

@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="?attr/colorPrimary"
+
+    android:layout_height="match_parent">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -71,19 +84,6 @@
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true">
 
-            <RadioButton
-                android:id="@+id/Good"
-                style="@style/CustomRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/good" />
-
-            <RadioButton
-                android:id="@+id/Bad"
-                style="@style/CustomRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/bad"/>
         </RadioGroup>
     </RelativeLayout>
 
@@ -185,6 +185,15 @@
             android:layout_marginBottom="@dimen/color_picker_margin" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tile_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/colorSelected" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/tile_size"
@@ -192,6 +201,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:weightSum="2"
         >
 
@@ -214,4 +225,4 @@
             android:background="@android:color/transparent"/>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>

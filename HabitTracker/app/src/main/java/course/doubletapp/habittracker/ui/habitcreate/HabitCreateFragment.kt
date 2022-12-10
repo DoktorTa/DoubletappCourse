@@ -1,27 +1,31 @@
 package course.doubletapp.habittracker.ui.habitcreate
 
-import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Spinner
-import androidx.core.view.isEmpty
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
-import course.doubletapp.habittracker.R
+import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
+import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentHabitCreateBinding
+import course.doubletapp.habittracker.ui.habitlist.HabitListActivity
 import course.doubletapp.habittracker.vm.HabitCreateViewModel
 
 
 class HabitCreateFragment(
-//    private val habitCreateViewModel: HabitCreateViewModel
+    private val habitCreateViewModel: HabitCreateViewModel
 ): Fragment() {
 
     private lateinit var binding: FragmentHabitCreateBinding
     private lateinit var colorPicker: ColorHabitPicker
+
+    private var typeHabit: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,8 +39,44 @@ class HabitCreateFragment(
             createColorPicker()
             setObserver()
             setSpinnerAdapter()
+
+            val arg = requireActivity().intent.extras
+            if (arg != null) {
+                loadHabitField(arg.get("habit") as Habit)
+            }
+
+            generateRadioButton()
         }
         return binding.root
+    }
+
+    private fun loadHabitField(habit: Habit){
+        binding.nameHabit.setText(habit.name)
+        binding.descriptionHabit.setText(habit.description)
+
+        binding.countHabit.setText(habit.countDay.toString())
+
+        binding.periodHabit.setText(habit.period.toString())
+
+        colorPicker.selectedColor = habit.color
+        typeHabit = habit.type
+
+        val spinnerPos: Int = PriorityHabit.values().map{it.toString()}.indexOf(habit.priority)
+        binding.spinnerPriorityHabit.setSelection(spinnerPos)
+    }
+
+    private fun generateRadioButton(){
+        val radioGroup: RadioGroup = binding.typeHabit
+        val typesHabit = TypeHabit.values().map{it.toString()}
+
+        for (type in typesHabit) {
+            val radioButton: RadioButton = RadioButton(context)
+            radioButton.setText(type)
+            if (type == typeHabit) {
+                radioButton.isChecked = true
+            }
+            radioGroup.addView(radioButton)
+        }
     }
 
     private fun createColorPicker() {
@@ -46,9 +86,6 @@ class HabitCreateFragment(
     }
 
     private fun setSpinnerAdapter(){
-        val spinner: Spinner = binding.spinnerPriorityHabit
-
-
         val priorityVariant: List<String> = PriorityHabit.values().map{it.toString()}
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
@@ -57,7 +94,6 @@ class HabitCreateFragment(
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerPriorityHabit.adapter = adapter
-
     }
 
     private fun setObserver(){
@@ -65,41 +101,51 @@ class HabitCreateFragment(
             view -> okButtonClick(view)
         }
         binding.canselButton.setOnClickListener {
-            view -> canselButtonClick(view)
+            canselButtonClick()
         }
+        binding.typeHabit.setOnCheckedChangeListener { _, checkedId ->
+            binding.typeHabit.findViewById<RadioButton>(checkedId)?.apply {
+                typeHabit = this.text.toString()
+            }
+        }
+
     }
 
     private fun okButtonClick(view: View){
         if (checkValidValues()) {
-            Log.d("HabitCreateFragment", "FALSE")
-        } else {
-            Log.d("HabitCreateFragment", "TRUE")
+            return
+        }
+        else {
+            addHabit()
         }
     }
 
-    private fun canselButtonClick(view: View){
-        TODO("Implemends")
+    private fun canselButtonClick(){
+        val intent = Intent(requireContext(), HabitListActivity::class.java)
+        startActivity(intent)
     }
 
     private fun checkValidValues(): Boolean {
         return (binding.nameHabit.text.isEmpty() ||
-                binding.descriptionHabit.text.isEmpty() ||
+                binding.descriptionHabit.text.isEmpty()||
                 binding.countHabit.text.isEmpty() ||
                 binding.periodHabit.text.isEmpty() ||
                 binding.typeHabit.checkedRadioButtonId == -1 ||
-                binding.spinnerPriorityHabit.isEmpty() ||
+                binding.spinnerPriorityHabit.selectedItem.toString().isEmpty() ||
                 colorPicker.selectedColor == null)
     }
-//
-//    private fun addHabit(){
-//        habitCreateViewModel.addHabit(
-//            name = binding.nameHabit.text.toString(),
-//            description = binding.descriptionHabit.text.toString(),
-//            period = binding.periodHabit.text.toString().toInt(),
-//            countDay = binding.countHabit.text.toString().toInt(),
-//            color = colorPicker.selectedColor!!
-//
-//            )
-//    }
 
+    private fun addHabit(){
+        habitCreateViewModel.addHabit(
+            name = binding.nameHabit.text.toString(),
+            description = binding.descriptionHabit.text.toString(),
+            period = binding.periodHabit.text.toString().toInt(),
+            countDay = binding.countHabit.text.toString().toInt(),
+            color = colorPicker.selectedColor!!,
+            priority = binding.spinnerPriorityHabit.selectedItem.toString(),
+            type = typeHabit!!
+        )
+
+        canselButtonClick()
+    }
 }

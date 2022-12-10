@@ -1,26 +1,26 @@
 package course.doubletapp.habittracker.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Habit(
     var name: String,
     var description: String,
-    var priority: PriorityHabit,
-    var type: TypeHabit,
+    var priority: String,
+    var type: String,
     var countDay: Int,
     var period: Int,
     var color: Int
-) {}
+) : Parcelable {}
 
-enum class TypeHabit(
-    val type: String
-){
-    GOOD("good"),
-    BAD("bad")
+enum class TypeHabit{
+    GOOD,
+    BAD
 }
 
-enum class PriorityHabit(
-    val priority: String
-){
-    HARD("Hard"),
-    MEDIUM("Medium"),
-    LOW("Low")
+enum class PriorityHabit{
+    HARD,
+    MEDIUM,
+    LOW
 }

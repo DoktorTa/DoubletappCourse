@@ -2,7 +2,6 @@ package course.doubletapp.habittracker.vm
 
 import androidx.lifecycle.ViewModel
 import course.doubletapp.habittracker.data.Habit
-import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.uc.HabitsUseCase
 
@@ -13,8 +12,8 @@ class HabitCreateViewModel(
     fun addHabit(
         name: String,
         description: String,
-        priority: PriorityHabit,
-        type: TypeHabit,
+        priority: String,
+        type: String,
         countDay: Int,
         period: Int,
         color: Int
