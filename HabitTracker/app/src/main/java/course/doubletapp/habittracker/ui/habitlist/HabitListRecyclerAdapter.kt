@@ -2,6 +2,7 @@ package course.doubletapp.habittracker.ui.habitlist
 
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.ViewGroup
@@ -52,7 +53,9 @@ class HabitListRecyclerAdapter(
             nameHabit.text = habit.name
             descriptionHabit.text = habit.description
 
-            colorHabit.background = ColorDrawable(habit.color)
+//            colorHabit.background = ColorDrawable(habit.color)
+            val backgroundHabitColor: GradientDrawable = colorHabit.background as GradientDrawable
+            backgroundHabitColor.setColor(habit.color)
 
             val info: String = context.getString(R.string.infoHabit,
                 habit.priority,
