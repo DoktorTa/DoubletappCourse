@@ -53,7 +53,6 @@ class HabitListRecyclerAdapter(
             nameHabit.text = habit.name
             descriptionHabit.text = habit.description
 
-//            colorHabit.background = ColorDrawable(habit.color)
             val backgroundHabitColor: GradientDrawable = colorHabit.background as GradientDrawable
             backgroundHabitColor.setColor(habit.color)
 

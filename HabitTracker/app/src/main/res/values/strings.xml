@@ -12,4 +12,8 @@
     <string name="edit_habit">Edit habit</string>
 
     <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>
+    
+<!--  DrawerLayout  -->
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
 </resources>

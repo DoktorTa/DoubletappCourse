@@ -6,4 +6,8 @@
     <dimen name="text_margin">5dp</dimen>
     <dimen name="color_picker_margin">1dp</dimen>
 
+
+<!--  Header InfoOnApp  -->
+    <dimen name="app_name_left_margin">20dp</dimen>
+    <dimen name="app_name_bottom_margin">10dp</dimen>
 </resources>

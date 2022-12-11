@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/habitListFragment">
 
     <fragment
         android:id="@+id/habitListFragment"
         android:name="course.doubletapp.habittracker.ui.habitlist.HabitListFragment"
-        android:label="HabitListFragment" />
-    <fragment
-        android:id="@+id/infoOnAppFragment"
-        android:name="course.doubletapp.habittracker.ui.infoOnApp.InfoOnAppFragment"
-        android:label="InfoOnAppFragment" />
+        android:label="HabitListFragment"
+        tools:layout="@layout/fragment_habit_list"/>
+
+
 </navigation>
