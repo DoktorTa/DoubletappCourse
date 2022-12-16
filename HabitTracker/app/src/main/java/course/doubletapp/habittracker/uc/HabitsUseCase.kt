@@ -9,23 +9,37 @@ import course.doubletapp.habittracker.data.TypeHabit
 class HabitsUseCase {
 
     private val _habits: MutableLiveData<MutableList<Habit>> = MutableLiveData(mutableListOf())
-    val habits: LiveData<MutableList<Habit>>
+    val habits: MutableLiveData<MutableList<Habit>>
         get() = _habits
 
     init {
-        _habits.value!!.add(Habit("One", "Description", PriorityHabit.HARD.toString(), TypeHabit.GOOD.toString(), 4, 5, -41277634))
-        _habits.value!!.add(Habit("Two", "Description", PriorityHabit.HARD.toString(), TypeHabit.GOOD.toString(), 4, 5, -554234))
+        val habit1 = Habit("One", "Description", PriorityHabit.HARD, TypeHabit.GOOD, 4, 5, -41277634)
+        val habit2 = Habit("Two", "Description", PriorityHabit.HARD, TypeHabit.BAD, 4, 5, -554234)
+        val habit3 = Habit("Three", "Description", PriorityHabit.HARD, TypeHabit.BAD, 4, 5, -5534)
+        val habit4 = Habit("Four", "Description", PriorityHabit.HARD, TypeHabit.GOOD, 4, 5, -12)
+        val habit5 = Habit("Five", "Description", PriorityHabit.HARD, TypeHabit.BAD, 4, 5, -12)
+
+        val arrayHabits = arrayOf(habit1, habit2, habit3, habit4, habit5)
+        arrayHabits.forEach {
+            _habits.value!!.add(it)
+        }
     }
 
-    fun addHabit(habit: Habit){
+    fun createHabit(habit: Habit){
         _habits.value!!.add(habit)
     }
+
+    fun editHabit(oldHabit: Habit, newHabit: Habit){
+        _habits.value!!.remove(oldHabit)
+        createHabit(newHabit)
+    }
+
 
     fun removeHabit(habit: Habit){
         _habits.value!!.remove(habit)
     }
 
-    fun getHabitForName(nameHabit: String): Habit?{
+    fun getHabitByName(nameHabit: String): Habit?{
         _habits.value!!.forEach {
             if (it.name == nameHabit){
                 return it

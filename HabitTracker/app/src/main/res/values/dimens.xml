@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="name_and_description_tile_size">144dp</dimen>
-    <dimen name="tile_size">72dp</dimen>
-    <dimen name="tile_margin">5dp</dimen>
-    <dimen name="text_margin">5dp</dimen>
-    <dimen name="color_picker_margin">1dp</dimen>
+
+
 
 
 <!--  Header InfoOnApp  -->
     <dimen name="app_name_left_margin">20dp</dimen>
     <dimen name="app_name_bottom_margin">10dp</dimen>
+    
+<!--  Fragment HabitCreate  -->
+    <dimen name="tile_radius_corner">15dip</dimen>
+    <dimen name="text_left_margin">15dp</dimen>
+    <dimen name="big_tile_size">144dp</dimen>
+    <dimen name="tile_size">72dp</dimen>
+    <dimen name="tile_margin">5dp</dimen>
+    <dimen name="text_margin">5dp</dimen>
+    <dimen name="color_picker_margin">1dp</dimen>
+    
 </resources>
