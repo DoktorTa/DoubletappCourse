@@ -3,7 +3,6 @@ package course.doubletapp.habittracker.vm
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
@@ -15,8 +14,8 @@ class HabitListViewModel(
     private val typeHabitsInPage: TypeHabit
 ): ViewModel() {
 
-    private var allHabits: MutableLiveData<MutableList<Habit>> = useCase.habits
-    lateinit var filteredAllHabits: LiveData<MutableList<Habit>>
+    private var allHabits: MutableLiveData<MutableSet<Habit>> = useCase.habits
+    lateinit var filteredAllHabits: LiveData<MutableSet<Habit>>
     var nowFilters: Filters = Filters(null, null, typeHabitsInPage, null)
 
     init {
@@ -26,15 +25,16 @@ class HabitListViewModel(
 //        setObserver()
     }
 
-    private fun setObserver(){
-        allHabits.observeForever {
-            val habitAfterFilter: MutableList<Habit> = applyFilters(nowFilters, useCase.habits.value!!)
-            filteredAllHabits.value!!.addAll(habitAfterFilter)
-        }
-    }
+//    private fun setObserver(){
+//        allHabits.observeForever {
+//
+//            val habitAfterFilter: MutableSet<Habit> = applyFilters(nowFilters, useCase.habits.value!!)
+//            filteredAllHabits.value!!.addAll(habitAfterFilter)
+//        }
+//    }
 
-    fun applyFilters(filters: Filters, filteredObject: MutableList<Habit> = allHabits.value!!): MutableList<Habit>{
-        val filtrateObjects: MutableList<Habit> = mutableListOf()
+    fun applyFilters(filters: Filters, filteredObject: MutableSet<Habit> = allHabits.value!!): MutableSet<Habit>{
+        val filtrateObjects: MutableSet<Habit> = mutableSetOf()
 
         if (filters.type != null){
             filtrateObjects.addAll(filteredObject.filterByType(filters.type))
@@ -48,6 +48,7 @@ class HabitListViewModel(
         if (habit !== null){
             useCase.removeHabit(habit)
         }
+        Log.d("HabitListViewModel", "${useCase.habits.value}")
     }
 
     fun getHabitForName(nameHabit: String): Habit{
@@ -63,9 +64,9 @@ data class Filters(
     val priority: PriorityHabit?
 ){}
 
-fun MutableList<Habit>.filterByType(valueFilter: TypeHabit): MutableList<Habit> {
-    val filteredAllHabits: MutableList<Habit> = this.filter{
+fun MutableSet<Habit>.filterByType(valueFilter: TypeHabit): MutableSet<Habit> {
+    val filteredAllHabits: MutableSet<Habit> = this.filter{
         it.type == valueFilter
-    }.toMutableList()
+    }.toMutableSet()
     return filteredAllHabits
 }

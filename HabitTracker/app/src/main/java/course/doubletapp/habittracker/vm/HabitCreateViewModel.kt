@@ -21,4 +21,8 @@ class HabitCreateViewModel(
     ){
         useCase.createHabit(Habit(name, description, priority, type, countDay, period, color))
     }
+
+    fun getHabitByName(name: String): Habit? {
+        return useCase.getHabitByName(name)
+    }
 }

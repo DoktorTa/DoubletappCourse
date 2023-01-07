@@ -24,4 +24,12 @@
 <!--  HabitViewHolder  -->
     <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>
 
+<!--  PriorityHabit  -->
+    <string name="hardText">HARD</string>
+    <string name="mediumText">MEDIUM</string>
+    <string name="lowText">LOW</string>
+
+    <string name="goodText">GOOD</string>
+    <string name="badText">BAD</string>
+
 </resources>

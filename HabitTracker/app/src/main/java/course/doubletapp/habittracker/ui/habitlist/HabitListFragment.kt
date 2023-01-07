@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.R
@@ -36,6 +37,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
             return fragment
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,7 +46,6 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
         binding = FragmentListHabitBinding.inflate(inflater)
         Log.d("HabitListFragment", "OnCreateView()")
-
 
         if (isAdded) {
             val typeHabit = arguments?.get(HABIT_TYPE) as? TypeHabit
@@ -63,15 +64,16 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
     private fun setObservers(){
         habitListViewModel.filteredAllHabits.observe(viewLifecycleOwner) {
-                adapter.submitList(it)
+            adapter.submitList(listOf()) // Это фиксит очень странный баг
+            adapter.submitList(it.toMutableList())
         }
     }
-
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onResume() {
-        super.onResume()
-        adapter.notifyDataSetChanged()
-    }
+//
+//    @SuppressLint("NotifyDataSetChanged")
+//    override fun onResume() {
+//        super.onResume()
+//        adapter.notifyDataSetChanged()
+//    }
 
 
     private fun setRecyclerAdapter(){
@@ -97,8 +99,17 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
-                HABIT_EDIT_CODE -> Log.d("PopUpMenu", "!")
-                HABIT_REMOVE_CODE -> habitListViewModel.removeHabit(name)
+                HABIT_EDIT_CODE -> {
+                    findNavController().navigate(
+                        R.id.action_centralFragment_to_habitCreateFragment,
+                        bundleOf("Habit" to name)
+                    )
+                }
+                HABIT_REMOVE_CODE -> {
+                    habitListViewModel.removeHabit(name)
+                    // TODO: Почему то при удалении элемента из адаптера, представление адаптера не обновляется само - это не хорошо
+                    adapter.notifyDataSetChanged()
+                }
             }
             return@setOnMenuItemClickListener true
         }

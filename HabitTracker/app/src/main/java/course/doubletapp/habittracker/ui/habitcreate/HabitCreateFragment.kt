@@ -1,22 +1,24 @@
 package course.doubletapp.habittracker.ui.habitcreate
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.R
+import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentHabitCreateBinding
-import course.doubletapp.habittracker.ui.CentralActivity
 import course.doubletapp.habittracker.vm.HabitCreateViewModel
+import java.lang.reflect.Type
 
 
 class HabitCreateFragment: Fragment() {
@@ -41,10 +43,12 @@ class HabitCreateFragment: Fragment() {
             setObserver()
             setSpinnerAdapter()
 
-//            val arg = requireActivity().intent.extras
-//            if (arg != null) {
-//                loadHabitField(arg.get("habit") as Habit)
-//            }
+            if (arguments != null) {
+                Log.d("HabitCreateFragment", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                val habitEdit: Habit = habitCreateViewModel.getHabitByName(requireArguments().getString("Habit")!!)!!
+                Log.d("HabitCreateFragment", habitEdit.toString())
+            //                loadHabitField(habitEdit)
+            }
 
             generateRadioButton()
         }
@@ -100,7 +104,7 @@ class HabitCreateFragment: Fragment() {
 
     private fun setObserver(){
         binding.okButton.setOnClickListener {
-//            view -> okButtonClick(view)
+            okButtonClick()
         }
         binding.canselButton.setOnClickListener {
             canselButtonClick()
@@ -113,40 +117,41 @@ class HabitCreateFragment: Fragment() {
 
     }
 
-//    private fun okButtonClick(view: View){
-//        if (checkValidValues()) {
-//            return
-//        }
-//        else {
-//            addHabit()
-//        }
-//    }
+    private fun okButtonClick(){
+        if (checkValidValues()) {
+            return
+        }
+        else {
+            addHabit()
+        }
+    }
 
     private fun canselButtonClick(){
         findNavController().navigate(R.id.action_habitCreateFragment_to_centralFragment)
     }
 
-//    private fun checkValidValues(): Boolean {
-//        return (binding.nameHabit.text.isEmpty() ||
-//                binding.descriptionHabit.text.isEmpty()||
-//                binding.countHabit.text.isEmpty() ||
-//                binding.periodHabit.text.isEmpty() ||
-//                binding.typeHabit.checkedRadioButtonId == -1 ||
-//                binding.spinnerPriorityHabit.selectedItem.toString().isEmpty() ||
-//                colorPicker.selectedColor == null)
-//    }
-//
-//    private fun addHabit(){
-//        habitCreateViewModel.addHabit(
-//            name = binding.nameHabit.text.toString(),
-//            description = binding.descriptionHabit.text.toString(),
-//            period = binding.periodHabit.text.toString().toInt(),
-//            countDay = binding.countHabit.text.toString().toInt(),
-//            color = colorPicker.selectedColor!!,
-//            priority = binding.spinnerPriorityHabit.selectedItem.toString(),
-//            type = typeHabit!!
-//        )
-//
-//        canselButtonClick()
-//    }
+    private fun checkValidValues(): Boolean {
+        return (binding.nameHabit.text.isEmpty() ||
+                binding.descriptionHabit.text.isEmpty()||
+                binding.countHabit.text.isEmpty() ||
+                binding.periodHabit.text.isEmpty() ||
+                binding.typeHabit.checkedRadioButtonId == -1 ||
+                binding.priorityHabit.selectedItem.toString().isEmpty() ||
+                colorPicker.selectedColor == null)
+    }
+
+    private fun addHabit(){
+
+        habitCreateViewModel.addHabit(
+            name = binding.nameHabit.text.toString(),
+            description = binding.descriptionHabit.text.toString(),
+            period = binding.periodHabit.text.toString().toInt(),
+            countDay = binding.countHabit.text.toString().toInt(),
+            color = colorPicker.selectedColor!!,
+            priority = PriorityHabit.valueOf(binding.priorityHabit.selectedItem.toString().uppercase()),
+            type = TypeHabit.valueOf(typeHabit!!)
+        )
+
+        canselButtonClick()
+    }
 }

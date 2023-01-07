@@ -1,6 +1,7 @@
 package course.doubletapp.habittracker.data
 
 import android.os.Parcelable
+import course.doubletapp.habittracker.R
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -14,13 +15,13 @@ data class Habit(
     var color: Int
 ) : Parcelable {}
 
-enum class TypeHabit{
-    GOOD,
-    BAD
+enum class TypeHabit(val resId: Int){
+    GOOD(R.string.goodText),
+    BAD(R.string.badText)
 }
 
-enum class PriorityHabit{
-    HARD,
-    MEDIUM,
-    LOW
+enum class PriorityHabit(val resID: Int){
+    HARD(R.string.hardText),
+    MEDIUM(R.string.mediumText),
+    LOW(R.string.lowText)
 }

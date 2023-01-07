@@ -8,8 +8,8 @@ import course.doubletapp.habittracker.data.TypeHabit
 
 class HabitsUseCase {
 
-    private val _habits: MutableLiveData<MutableList<Habit>> = MutableLiveData(mutableListOf())
-    val habits: MutableLiveData<MutableList<Habit>>
+    private val _habits: MutableLiveData<MutableSet<Habit>> = MutableLiveData(mutableSetOf())
+    val habits: MutableLiveData<MutableSet<Habit>>
         get() = _habits
 
     init {

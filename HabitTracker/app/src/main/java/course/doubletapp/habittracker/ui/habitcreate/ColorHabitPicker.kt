@@ -80,6 +80,7 @@ class ColorPicker(
     }
 
     private fun changeColorSelectedSquare(idColor: Int){
+        selectedColor = idColor
         val backgroundHabitColor: GradientDrawable =
             colorSelectedSquare.background as GradientDrawable
         backgroundHabitColor.setColor(idColor)
