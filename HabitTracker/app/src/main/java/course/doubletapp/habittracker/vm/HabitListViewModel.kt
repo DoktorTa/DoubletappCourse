@@ -4,34 +4,21 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.DiffUtil
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.uc.HabitsUseCase
+import course.doubletapp.habittracker.util.HabitsDiffUtilCallBack
+
 
 class HabitListViewModel(
     val useCase: HabitsUseCase,
     private val typeHabitsInPage: TypeHabit
 ): ViewModel() {
 
-    private var allHabits: MutableLiveData<MutableSet<Habit>> = useCase.habits
-    lateinit var filteredAllHabits: LiveData<MutableSet<Habit>>
+    var allHabits: MutableLiveData<MutableSet<Habit>> = useCase.habits
     var nowFilters: Filters = Filters(null, null, typeHabitsInPage, null)
-
-    init {
-        allHabits = MutableLiveData(applyFilters(nowFilters, allHabits.value!!))
-        Log.d("HabitListViewModel", "${allHabits.value}")
-        filteredAllHabits = allHabits
-//        setObserver()
-    }
-
-//    private fun setObserver(){
-//        allHabits.observeForever {
-//
-//            val habitAfterFilter: MutableSet<Habit> = applyFilters(nowFilters, useCase.habits.value!!)
-//            filteredAllHabits.value!!.addAll(habitAfterFilter)
-//        }
-//    }
 
     fun applyFilters(filters: Filters, filteredObject: MutableSet<Habit> = allHabits.value!!): MutableSet<Habit>{
         val filtrateObjects: MutableSet<Habit> = mutableSetOf()

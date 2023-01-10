@@ -63,18 +63,12 @@ class HabitListFragment: Fragment(), HabitClickListener {
     }
 
     private fun setObservers(){
-        habitListViewModel.filteredAllHabits.observe(viewLifecycleOwner) {
+        habitListViewModel.allHabits.observe(viewLifecycleOwner) {
             adapter.submitList(listOf()) // Это фиксит очень странный баг
-            adapter.submitList(it.toMutableList())
+            adapter.submitList(habitListViewModel
+                .applyFilters(habitListViewModel.nowFilters).toMutableList())
         }
     }
-//
-//    @SuppressLint("NotifyDataSetChanged")
-//    override fun onResume() {
-//        super.onResume()
-//        adapter.notifyDataSetChanged()
-//    }
-
 
     private fun setRecyclerAdapter(){
         val habitList = binding.habitListRecyclerView
@@ -108,7 +102,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
                 HABIT_REMOVE_CODE -> {
                     habitListViewModel.removeHabit(name)
                     // TODO: Почему то при удалении элемента из адаптера, представление адаптера не обновляется само - это не хорошо
-                    adapter.notifyDataSetChanged()
+                    setObservers()
                 }
             }
             return@setOnMenuItemClickListener true
