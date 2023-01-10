@@ -42,15 +42,13 @@ class HabitCreateFragment: Fragment() {
             createColorPicker()
             setObserver()
             setSpinnerAdapter()
+            generateRadioButton()
 
             if (arguments != null) {
-                Log.d("HabitCreateFragment", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
                 val habitEdit: Habit = habitCreateViewModel.getHabitByName(requireArguments().getString("Habit")!!)!!
-                Log.d("HabitCreateFragment", habitEdit.toString())
-            //                loadHabitField(habitEdit)
+                loadHabitField(habitEdit)
             }
 
-            generateRadioButton()
         }
         return binding.root
     }
@@ -60,18 +58,16 @@ class HabitCreateFragment: Fragment() {
         habitCreateViewModel = HabitCreateViewModel(habitUseCase)
     }
 
-//    private fun loadHabitField(habit: Habit){
-//        binding.nameHabit.setText(habit.name)
-//        binding.descriptionHabit.setText(habit.description)
-//        binding.countHabit.setText(habit.countDay.toString())
-//        binding.periodHabit.setText(habit.period.toString())
-//
-//        colorPicker.changeColorSelectedSquare(habit.color)
-//        typeHabit = habit.type
-//
-//        val spinnerPos: Int = PriorityHabit.values().map{it.toString()}.indexOf(habit.priority)
-//        binding.spinnerPriorityHabit.setSelection(spinnerPos)
-//    }
+    private fun loadHabitField(habit: Habit){
+        binding.nameHabit.setText(habit.name)
+        binding.descriptionHabit.setText(habit.description)
+        binding.countHabit.setText(habit.countDay.toString())
+        binding.periodHabit.setText(habit.period.toString())
+
+        colorPicker.changeColorSelectedSquare(habit.color)
+        (binding.typeHabit.getChildAt(habit.type.ordinal) as RadioButton).isChecked = true
+        binding.priorityHabit.setSelection(habit.priority.ordinal)
+    }
 
     private fun generateRadioButton(){
         val radioGroup: RadioGroup = binding.typeHabit
@@ -80,9 +76,6 @@ class HabitCreateFragment: Fragment() {
         for (type in typesHabit) {
             val radioButton = RadioButton(context)
             radioButton.setText(type)
-            if (type == typeHabit) {
-                radioButton.isChecked = true
-            }
             radioGroup.addView(radioButton)
         }
     }
