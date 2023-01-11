@@ -19,7 +19,14 @@ class HabitCreateViewModel(
         period: Int,
         color: Int
     ){
-        useCase.createHabit(Habit(name, description, priority, type, countDay, period, color))
+        val habitOld = getHabitByName(name)
+        val habitNew = Habit(name, description, priority, type, countDay, period, color)
+
+        if (habitOld != null){
+            useCase.editHabit(habitOld, habitNew)
+        } else {
+            useCase.createHabit(habitNew)
+        }
     }
 
     fun getHabitByName(name: String): Habit? {
