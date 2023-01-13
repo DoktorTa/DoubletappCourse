@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +6,6 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="?attr/colorPrimary"
-
     android:layout_height="match_parent">
 
 <ScrollView
@@ -16,180 +13,209 @@
     android:layout_height="wrap_content">
 
 <androidx.constraintlayout.widget.ConstraintLayout
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/name_and_description_tile_size"
+        android:layout_height="@dimen/big_tile_size"
         android:layout_margin="@dimen/tile_margin"
         android:layout_marginStart="@dimen/tile_margin"
         android:layout_marginTop="@dimen/tile_margin"
-        android:background="?attr/colorSecondary"
+        android:background="@drawable/tile_background"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/nameHabit"
-            android:layout_margin="@dimen/text_margin"
+            android:layout_marginStart="@dimen/text_left_margin"
+            android:layout_marginTop="@dimen/text_margin"
             style="@style/NameHabitText"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/name_habit" />
+            android:hint="@string/name_habit"
+            android:autofillHints=""
+            android:inputType="textCapSentences|textAutoCorrect"/>
 
         <EditText
             android:id="@+id/descriptionHabit"
-            android:layout_marginStart="@dimen/text_margin"
-            android:layout_marginBottom="@dimen/text_margin"
+            android:layout_marginStart="@dimen/text_left_margin"
+            android:layout_marginTop="@dimen/text_margin"
             style="@style/StandardHabitText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/description" />
+            android:hint="@string/description"
+            android:autofillHints=""
+            android:inputType="textCapSentences|textAutoCorrect"/>
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/spinner_layout"
-
+        android:id="@+id/period_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tile_size"
-        android:background="?attr/colorSecondary"
+        android:background="@drawable/tile_background"
         android:layout_margin="@dimen/tile_margin"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <Spinner
-            android:id="@+id/spinnerPriorityHabit"
-            style="@style/StandardHabitTextRevers"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:dropDownSelector="@drawable/ic_spinner_arrow_24"
-
+        <TextView
+            android:text="@string/period_text"
+            style="@style/StandardHabitText"
+            android:layout_marginStart="@dimen/text_left_margin"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/text_margin"/>
-
-        <RadioGroup
-            android:id="@+id/typeHabit"
-
+            
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/text_margin"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true">
-
-        </RadioGroup>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:layout_margin="@dimen/tile_margin"
-
-        android:background="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_layout">
-
+            android:layout_height="wrap_content"/>
+        
         <EditText
             android:id="@+id/periodHabit"
-            style="@style/StandardHabitValue"
-            android:inputType="number"
             android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/text_left_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/text_margin"
-            android:hint="@string/period"
-            android:background="?attr/colorSecondary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:autofillHints=""
+            android:inputType="phone"
+            tools:ignore="RelativeOverlap" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/count_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tile_size"
+        android:background="@drawable/tile_background"
+        android:layout_margin="@dimen/tile_margin"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/period_layout">
+
+        <TextView
+            android:text="@string/count_text"
+            style="@style/StandardHabitText"
+            android:layout_marginStart="@dimen/text_left_margin"
+            android:layout_centerVertical="true"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <EditText
-            android:inputType="number"
             android:id="@+id/countHabit"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            style="@style/StandardHabitValue"
+            android:layout_marginEnd="@dimen/text_left_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/text_margin"
-            android:background="?attr/colorSecondary"
-            android:hint="@string/count"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:autofillHints=""
+            android:inputType="phone"
+            tools:ignore="RelativeOverlap" />
     </RelativeLayout>
 
-
     <RelativeLayout
-        android:id="@+id/topLineColorSelector"
+        android:id="@+id/type_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tile_size"
-        android:background="?attr/colorSecondary"
-
+        android:background="@drawable/tile_background"
         android:layout_margin="@dimen/tile_margin"
-        android:orientation="horizontal"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/count_layout">
 
+        <TextView
+            android:text="@string/type_text"
+            style="@style/StandardHabitText"
+            android:layout_marginStart="@dimen/text_left_margin"
+            android:layout_centerVertical="true"
 
-        <HorizontalScrollView
-            android:id="@+id/colorPicker"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/color_picker_margin"
-            android:layout_marginTop="@dimen/color_picker_margin"
-            android:layout_marginEnd="@dimen/color_picker_margin"
-            android:layout_marginBottom="@dimen/color_picker_margin"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="RelativeOverlap" />
 
-            <RadioGroup
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp"
-                android:id="@+id/colorSquare"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" />
-        </HorizontalScrollView>
-
-
+        <RadioGroup
+            android:id="@+id/typeHabit"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/text_left_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
-
 
     <RelativeLayout
-        android:id="@+id/colorSelected"
+        android:id="@+id/priority_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tile_size"
-        android:background="?attr/colorSecondary"
-
-        android:layout_marginStart="@dimen/tile_margin"
-        android:layout_marginEnd="@dimen/tile_margin"
+        android:background="@drawable/tile_background"
+        android:layout_margin="@dimen/tile_margin"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topLineColorSelector">
+        app:layout_constraintTop_toBottomOf="@+id/type_layout">
 
-        <View
-            android:id="@+id/colorSelectedSquare"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/color_picker_margin"
-            android:layout_marginEnd="@dimen/color_picker_margin"
-            android:layout_marginBottom="@dimen/color_picker_margin" />
+        <TextView
+            android:text="@string/priority_text"
+            style="@style/StandardHabitText"
+            android:layout_marginStart="@dimen/text_left_margin"
+            android:layout_centerVertical="true"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/priorityHabit"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="?attr/colorPrimary"
+            android:dropDownSelector="@drawable/ic_spinner_arrow_24"
+            android:layout_marginEnd="@dimen/text_left_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/tile_size"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/big_tile_size"
+        android:background="@drawable/tile_background"
+        android:layout_margin="@dimen/tile_margin"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorSelected" />
+        app:layout_constraintTop_toBottomOf="@+id/priority_layout">
+
+            <HorizontalScrollView
+                android:id="@+id/colorPicker"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tile_size"
+                android:layout_centerInParent="true"
+
+                android:layout_marginStart="@dimen/color_picker_margin"
+                android:layout_marginTop="@dimen/color_picker_margin"
+                android:layout_marginEnd="@dimen/color_picker_margin"
+                android:layout_marginBottom="@dimen/color_picker_margin">
+
+                <RadioGroup
+                    android:background="@drawable/title_up_piece_background"
+                    android:id="@+id/colorSquare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp" />
+
+            </HorizontalScrollView>
+
+            <View
+                android:background="@drawable/title_down_piece_background"
+                android:id="@+id/colorSelectedSquare"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/color_picker_margin"
+                android:layout_marginEnd="@dimen/color_picker_margin"
+                android:layout_marginBottom="@dimen/color_picker_margin" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

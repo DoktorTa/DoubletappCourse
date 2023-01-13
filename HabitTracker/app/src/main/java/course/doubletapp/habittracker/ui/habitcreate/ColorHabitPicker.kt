@@ -2,7 +2,6 @@ package course.doubletapp.habittracker.ui.habitcreate
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.LinearLayout
@@ -12,23 +11,32 @@ import course.doubletapp.habittracker.R
 
 import course.doubletapp.habittracker.util.dp
 
-class ColorHabitPicker(
+class ColorPicker(
     private val context: Context,
+    private val colorPickerView: View,
     private val colorSelectedSquare: View
 ) {
-
+    var selectedColor: Int? = null
     private val colors: List<Int> = (0 until 16).map{
         Color.HSVToColor(floatArrayOf(360f / 16f * (it + 1) - 360f / 16f / 2f, 0.9f, 1f))
     }
 
-    var selectedColor: Int? = null
+    init {
+        generateGradient()
+        generateRadioGroup(colorPickerView as RadioGroup)
+    }
 
-    fun generateGradient(): GradientDrawable {
+    private fun generateGradient(): GradientDrawable {
         val colors = generateGradientArray()
-        val gradientDrawable = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, colors)
-        gradientDrawable.gradientType = GradientDrawable.LINEAR_GRADIENT
 
-        return gradientDrawable
+        val backgroundHabitColor: GradientDrawable =
+            colorPickerView.background as GradientDrawable
+
+        backgroundHabitColor.gradientType = GradientDrawable.LINEAR_GRADIENT
+        backgroundHabitColor.orientation = GradientDrawable.Orientation.LEFT_RIGHT
+        backgroundHabitColor.colors = colors
+
+        return backgroundHabitColor
     }
 
     private fun generateGradientArray(): IntArray{
@@ -39,7 +47,7 @@ class ColorHabitPicker(
             .toIntArray()
     }
 
-    fun generateRadioGroup(radioGroup: RadioGroup){
+    private fun generateRadioGroup(radioGroup: RadioGroup){
         for (color in colors) {
             radioGroup.addView(generateRadioButton(color.toString()))
         }
@@ -72,9 +80,10 @@ class ColorHabitPicker(
     }
 
     fun changeColorSelectedSquare(idColor: Int){
-        val background = ColorDrawable(idColor)
         selectedColor = idColor
-        colorSelectedSquare.background = background
+        val backgroundHabitColor: GradientDrawable =
+            colorSelectedSquare.background as GradientDrawable
+        backgroundHabitColor.setColor(idColor)
     }
 
 }

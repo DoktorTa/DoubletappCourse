@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
+<!--  InfoOnApp  -->
+
+    <style name="NameAppText">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DescriptionAppText">
+        <item name="android:textColor">?attr/colorSecondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+<!--  InfoOnApp  -->
+
+<!--  HabitCreate  -->
+
     <style name="NameHabitText">
         <item name="android:textColorHint">?attr/colorPrimary</item>
         <item name="android:textColor">?attr/colorPrimary</item>
@@ -30,5 +48,7 @@
     <style name="CustomRadioButton" parent="StandardHabitText">
         <item name="buttonTint">?attr/colorPrimary</item>
     </style>
+
+<!--  HabitCreate  -->
 
 </resources>
