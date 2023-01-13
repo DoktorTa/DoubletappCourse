@@ -34,7 +34,7 @@ class ColorPicker(
 
         backgroundHabitColor.gradientType = GradientDrawable.LINEAR_GRADIENT
         backgroundHabitColor.orientation = GradientDrawable.Orientation.LEFT_RIGHT
-        backgroundHabitColor.setColors(colors)
+        backgroundHabitColor.colors = colors
 
         return backgroundHabitColor
     }

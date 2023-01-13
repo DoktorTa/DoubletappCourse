@@ -20,6 +20,10 @@
 <!--  HabitListFragment  -->
     <string name="habit_menu_remove">Remove</string>
     <string name="habit_menu_edit">Edit</string>
+    <string name="habit_remove_dialog_ok">OK</string>
+    <string name="habit_remove_dialog_cansel">CANSEL</string>
+    <string name="habit_remove_dialog_msg">Want to remove a habit?</string>
+
 
 <!--  HabitViewHolder  -->
     <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>

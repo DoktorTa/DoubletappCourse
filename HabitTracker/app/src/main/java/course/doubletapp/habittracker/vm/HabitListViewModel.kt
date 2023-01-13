@@ -1,16 +1,12 @@
 package course.doubletapp.habittracker.vm
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.DiffUtil
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.uc.HabitsUseCase
-import course.doubletapp.habittracker.util.HabitsDiffUtilCallBack
-
 
 class HabitListViewModel(
     val useCase: HabitsUseCase,
@@ -37,11 +33,6 @@ class HabitListViewModel(
         }
         Log.d("HabitListViewModel", "${useCase.habits.value}")
     }
-
-    fun getHabitForName(nameHabit: String): Habit{
-        return useCase.getHabitByName(nameHabit)!!
-    }
-
 }
 
 data class Filters(

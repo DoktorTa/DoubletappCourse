@@ -1,33 +1,23 @@
 package course.doubletapp.habittracker.ui.habitlist
 
-import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.ViewGroup
-import android.widget.PopupMenu
-import androidx.core.os.bundleOf
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.databinding.HabitItemBinding
-import course.doubletapp.habittracker.vm.HabitListViewModel
 
 class HabitListRecyclerAdapter(
     private val habitClickListener: HabitClickListener
-    ):
-    ListAdapter<Habit, HabitListRecyclerAdapter.HabitViewHolder>(HABIT_COMPARATOR){
+    ): ListAdapter<Habit, HabitListRecyclerAdapter.HabitViewHolder>(HABIT_COMPARATOR){
 
     class HabitViewHolder(
-        val itemBinding: HabitItemBinding,
+        private val itemBinding: HabitItemBinding,
         private var habitClickListener: HabitClickListener
-    ):
-        RecyclerView.ViewHolder(itemBinding.root){
+    ): RecyclerView.ViewHolder(itemBinding.root){
 
         fun bind(habit: Habit){
             itemBinding.nameHabit.text = habit.name
@@ -50,10 +40,8 @@ class HabitListRecyclerAdapter(
             itemView.setOnClickListener {
                 habitClickListener.habitClickListener(it, habit.name)
             }
-
         }
-
-        }
+    }
 
     companion object {
         private val HABIT_COMPARATOR = object : DiffUtil.ItemCallback<Habit>() {
@@ -76,29 +64,4 @@ class HabitListRecyclerAdapter(
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
-    // TODO: Bug меню открывается только в одном месте
-//    private fun performOptionsMenuClick(holder: HabitViewHolder, name: String) {
-//        val popupMenu = PopupMenu(context, holder.itemView)
-//        popupMenu.inflate(R.menu.habit_menu)
-//
-//        popupMenu.setOnMenuItemClickListener(object : PopupMenu.OnMenuItemClickListener{
-//            override fun onMenuItemClick(item: MenuItem?): Boolean {
-//                when(item?.itemId){
-//                    R.id.removeBut -> {
-//                        habitListViewModel.removeHabit(name)
-//                        notifyDataSetChanged()
-//                        return true
-//                    }
-//                    R.id.editBut -> {
-////                        goToHabitCreateListener.goToHabitCreateListener(name)
-//                        return true
-//                    }
-//                }
-//                return false
-//            }
-//        })
-//        popupMenu.show()
-//    }
-
 }

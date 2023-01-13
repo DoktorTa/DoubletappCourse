@@ -12,7 +12,6 @@ import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentCentralBinding
 import course.doubletapp.habittracker.vm.HabitListViewModel
 
-
 class CentralFragment: Fragment() {
 
     private lateinit var binding: FragmentCentralBinding

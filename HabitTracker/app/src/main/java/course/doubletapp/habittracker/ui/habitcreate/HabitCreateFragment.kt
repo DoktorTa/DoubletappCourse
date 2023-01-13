@@ -1,14 +1,12 @@
 package course.doubletapp.habittracker.ui.habitcreate
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import course.doubletapp.habittracker.HabitTrackerApplication
@@ -18,8 +16,6 @@ import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentHabitCreateBinding
 import course.doubletapp.habittracker.vm.HabitCreateViewModel
-import java.lang.reflect.Type
-
 
 class HabitCreateFragment: Fragment() {
 
@@ -45,7 +41,8 @@ class HabitCreateFragment: Fragment() {
             generateRadioButton()
 
             if (arguments != null) {
-                val habitEdit: Habit = habitCreateViewModel.getHabitByName(requireArguments().getString("Habit")!!)!!
+                val habitEdit: Habit = habitCreateViewModel
+                    .getHabitByName(requireArguments().getString("Habit")!!)!!
                 loadHabitField(habitEdit)
             }
 
@@ -75,7 +72,7 @@ class HabitCreateFragment: Fragment() {
 
         for (type in typesHabit) {
             val radioButton = RadioButton(context)
-            radioButton.setText(type)
+            radioButton.text = type
             radioGroup.addView(radioButton)
         }
     }

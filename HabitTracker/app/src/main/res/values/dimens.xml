@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
-
-
 <!--  Header InfoOnApp  -->
     <dimen name="app_name_left_margin">20dp</dimen>
     <dimen name="app_name_bottom_margin">10dp</dimen>

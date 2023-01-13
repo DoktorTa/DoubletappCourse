@@ -1,8 +1,7 @@
 package course.doubletapp.habittracker.ui.habitlist
 
-import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -14,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.R
-import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentListHabitBinding
 import course.doubletapp.habittracker.vm.HabitListViewModel
@@ -45,7 +43,6 @@ class HabitListFragment: Fragment(), HabitClickListener {
     ): View? {
 
         binding = FragmentListHabitBinding.inflate(inflater)
-        Log.d("HabitListFragment", "OnCreateView()")
 
         if (isAdded) {
             val typeHabit = arguments?.get(HABIT_TYPE) as? TypeHabit
@@ -84,7 +81,6 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
     override fun habitClickListener(view: View, name: String) {
         val popupMenu = PopupMenu(requireContext(), view)
-//        val position = habitListViewModel.getHabitForName(name)
 
         popupMenu.menu.add(0, HABIT_EDIT_CODE, Menu.NONE,
             requireContext().getString(R.string.habit_menu_edit))
@@ -100,14 +96,22 @@ class HabitListFragment: Fragment(), HabitClickListener {
                     )
                 }
                 HABIT_REMOVE_CODE -> {
-                    habitListViewModel.removeHabit(name)
-                    // TODO: Почему то при удалении элемента из адаптера, представление адаптера не обновляется само - это не хорошо
-                    setObservers()
+                    createRemoveDialog(name)
                 }
             }
             return@setOnMenuItemClickListener true
         }
 
         popupMenu.show()
+    }
+
+    private fun createRemoveDialog(name: String){
+        val builder = AlertDialog.Builder(requireActivity())
+        builder
+            .setMessage(R.string.habit_remove_dialog_msg)
+            .setPositiveButton(R.string.habit_remove_dialog_ok) {_, _ -> habitListViewModel.removeHabit(name)}
+            .setNegativeButton(R.string.habit_remove_dialog_cansel) {dialog, _ -> dialog.cancel()}
+        builder.create().show()
+
     }
 }
