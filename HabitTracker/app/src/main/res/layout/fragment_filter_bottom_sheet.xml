@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+
+    android:background="@drawable/filter_bottom_sheet_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AboutBottomSheet"
+        android:text="Filters"
+        android:layout_margin="@dimen/text_left_margin"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/filterByNameHabit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextFilterNameHabit"
+        android:layout_marginLeft="@dimen/text_left_margin"
+        android:text="Name filter"/>
+
+    <EditText
+        android:id="@+id/filterByDescriptionHabit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextFilterDescriptionHabit"
+        android:layout_marginLeft="@dimen/text_left_margin"
+        android:text="Description filter"/>
+
+    <RadioGroup
+        android:id="@+id/filterByTypeHabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/text_left_margin"
+        />
+
+    <Spinner
+        android:id="@+id/filterByPriorityHabit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorPrimary"
+        android:dropDownSelector="@drawable/ic_spinner_arrow_24"
+        android:layout_marginLeft="@dimen/text_left_margin"
+        />
+</LinearLayout>

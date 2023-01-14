@@ -51,4 +51,26 @@
 
 <!--  HabitCreate  -->
 
+<!--  FilterBottomSheet  -->
+
+    <style name="AboutBottomSheet">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextFilterNameHabit">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLength">@integer/max_len_name_habit</item>
+    </style>
+
+    <style name="TextFilterDescriptionHabit">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLength">@integer/max_len_description_habit</item>
+    </style>
+
+
+    <!--  FilterBottomSheet  -->
+
 </resources>
