@@ -52,137 +52,168 @@
             android:inputType="textCapSentences|textAutoCorrect"/>
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/period_layout"
+    <LinearLayout
+        android:id="@+id/value_habit_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
+        android:layout_height="@dimen/value_tile_size"
         android:background="@drawable/tile_background"
+        android:orientation="vertical"
+
         android:layout_margin="@dimen/tile_margin"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <TextView
-            android:text="@string/period_text"
-            style="@style/StandardHabitText"
-            android:layout_marginStart="@dimen/text_left_margin"
-            android:layout_centerVertical="true"
-            
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        
-        <EditText
-            android:id="@+id/periodHabit"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/text_left_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:inputType="phone"
-            tools:ignore="RelativeOverlap" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/period_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tile_size">
 
+            <TextView
+                android:text="@string/period_text"
+                style="@style/StandardHabitText"
+                android:layout_marginStart="@dimen/text_left_margin"
+                android:layout_centerVertical="true"
 
-    <RelativeLayout
-        android:id="@+id/count_layout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:background="@drawable/tile_background"
-        android:layout_margin="@dimen/tile_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/period_layout">
+            <EditText
+                android:id="@+id/periodHabit"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/text_left_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="phone"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
 
-        <TextView
-            android:text="@string/count_text"
-            style="@style/StandardHabitText"
-            android:layout_marginStart="@dimen/text_left_margin"
-            android:layout_centerVertical="true"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separation_line_height"
+            android:background="?attr/colorPrimary"
+            android:layout_marginEnd="@dimen/separation_line_margin"
+            android:layout_marginStart="@dimen/separation_line_margin"/>
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:id="@+id/count_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tile_size">
 
-        <EditText
-            android:id="@+id/countHabit"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/text_left_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints=""
-            android:inputType="phone"
-            tools:ignore="RelativeOverlap" />
-    </RelativeLayout>
+            <TextView
+                android:text="@string/count_text"
+                style="@style/StandardHabitText"
+                android:layout_marginStart="@dimen/text_left_margin"
+                android:layout_centerVertical="true"
 
-    <RelativeLayout
-        android:id="@+id/type_layout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:background="@drawable/tile_background"
-        android:layout_margin="@dimen/tile_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/count_layout">
+            <EditText
+                android:id="@+id/countHabit"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/text_left_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="phone"
+                tools:ignore="RelativeOverlap" />
+        </RelativeLayout>
 
-        <TextView
-            android:text="@string/type_text"
-            style="@style/StandardHabitText"
-            android:layout_marginStart="@dimen/text_left_margin"
-            android:layout_centerVertical="true"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separation_line_height"
+            android:background="?attr/colorPrimary"
+            android:layout_marginEnd="@dimen/separation_line_margin"
+            android:layout_marginStart="@dimen/separation_line_margin"/>
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:ignore="RelativeOverlap" />
+        <RelativeLayout
+            android:id="@+id/type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tile_size">
 
-        <RadioGroup
-            android:id="@+id/typeHabit"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/text_left_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+            <TextView
+                android:text="@string/type_text"
+                style="@style/StandardHabitText"
+                android:layout_marginStart="@dimen/text_left_margin"
+                android:layout_centerVertical="true"
 
-    <RelativeLayout
-        android:id="@+id/priority_layout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:background="@drawable/tile_background"
-        android:layout_margin="@dimen/tile_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="RelativeOverlap" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/type_layout">
+            <RadioGroup
+                android:id="@+id/typeHabit"
+                android:orientation="horizontal"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/text_left_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
 
-        <TextView
-            android:text="@string/priority_text"
-            style="@style/StandardHabitText"
-            android:layout_marginStart="@dimen/text_left_margin"
-            android:layout_centerVertical="true"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separation_line_height"
+            android:background="?attr/colorPrimary"
+            android:layout_marginEnd="@dimen/separation_line_margin"
+            android:layout_marginStart="@dimen/separation_line_margin"/>
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <RelativeLayout
+            android:id="@+id/priority_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tile_size">
 
-        <Spinner
-            android:id="@+id/priorityHabit"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:backgroundTint="?attr/colorPrimary"
-            android:dropDownSelector="@drawable/ic_spinner_arrow_24"
-            android:layout_marginEnd="@dimen/text_left_margin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+            <TextView
+                android:text="@string/priority_text"
+                style="@style/StandardHabitText"
+                android:layout_marginStart="@dimen/text_left_margin"
+                android:layout_centerVertical="true"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/priorityHabit"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="?attr/colorPrimary"
+                android:dropDownSelector="@drawable/ic_spinner_arrow_24"
+                android:layout_marginEnd="@dimen/text_left_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/big_tile_size"
+        android:layout_height="@dimen/color_picker_tile_size"
         android:background="@drawable/tile_background"
         android:layout_margin="@dimen/tile_margin"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priority_layout">
+        app:layout_constraintTop_toBottomOf="@+id/value_habit_layout">
+
+        <RelativeLayout
+            android:id="@+id/text_color_picker"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tile_size">
+
+            <TextView
+                android:id="@+id/text_about_color_picker"
+                android:text="@string/color_picker_stub"
+                style="@style/StandardHabitText"
+                android:layout_marginStart="@dimen/text_left_margin"
+                android:layout_centerVertical="true"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
 
             <HorizontalScrollView
                 android:id="@+id/colorPicker"
@@ -196,7 +227,7 @@
                 android:layout_marginBottom="@dimen/color_picker_margin">
 
                 <RadioGroup
-                    android:background="@drawable/title_up_piece_background"
+                    android:background="@drawable/tile_color_picker_background"
                     android:id="@+id/colorSquare"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -207,7 +238,7 @@
             </HorizontalScrollView>
 
             <View
-                android:background="@drawable/title_down_piece_background"
+                android:background="@drawable/tile_down_piece_background"
                 android:id="@+id/colorSelectedSquare"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

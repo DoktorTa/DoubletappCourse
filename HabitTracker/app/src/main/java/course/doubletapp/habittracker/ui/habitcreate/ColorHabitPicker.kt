@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RadioGroup
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatRadioButton
 import course.doubletapp.habittracker.R
 
@@ -14,7 +15,8 @@ import course.doubletapp.habittracker.util.dp
 class ColorPicker(
     private val context: Context,
     private val colorPickerView: View,
-    private val colorSelectedSquare: View
+    private val colorSelectedSquare: View,
+    private val aboutColorText: View
 ) {
     var selectedColor: Int? = null
     private val colors: List<Int> = (0 until 16).map{
@@ -53,6 +55,40 @@ class ColorPicker(
         }
     }
 
+    private fun generateInfoBySelectedColor(){
+        var intColor: String = "0"
+        var hexColor: String = "0x0"
+        var hsvColor: String = "(0 ,0, 0)"
+
+        if (selectedColor != null) {
+            intColor = selectedColor.toString()
+            hexColor = Integer.toHexString(selectedColor!!).toString()
+            hsvColor = getHSVText(selectedColor!!)
+        }
+
+        val info: String = context.getString(
+            R.string.infoColor,
+            intColor,
+            hexColor,
+            hsvColor
+        )
+
+        val editText = aboutColorText as TextView
+        editText.text = info
+
+    }
+
+    private fun getHSVText(color: Int): String {
+        val hsv = FloatArray(3)
+        Color.colorToHSV(color, hsv)
+
+        val hue = hsv[0].toInt()
+        val sat = (hsv[1] * 100).toInt()
+        val value = (hsv[2] * 100).toInt()
+
+        return "($hue, $sat, $value)"
+    }
+
     private fun generateRadioButton(color: String): AppCompatRadioButton{
         val radioButton = AppCompatRadioButton(context)
         radioButton.setBackgroundResource(R.drawable.radio_selecter)
@@ -84,6 +120,7 @@ class ColorPicker(
         val backgroundHabitColor: GradientDrawable =
             colorSelectedSquare.background as GradientDrawable
         backgroundHabitColor.setColor(idColor)
+        generateInfoBySelectedColor()
     }
 
 }

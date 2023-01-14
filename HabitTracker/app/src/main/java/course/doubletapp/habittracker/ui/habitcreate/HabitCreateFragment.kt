@@ -78,7 +78,7 @@ class HabitCreateFragment: Fragment() {
     }
 
     private fun createColorPicker() {
-        colorPicker = ColorPicker(requireContext(), binding.colorSquare, binding.colorSelectedSquare)
+        colorPicker = ColorPicker(requireContext(), binding.colorSquare, binding.colorSelectedSquare, binding.textAboutColorPicker)
     }
 
     private fun setSpinnerAdapter(){
