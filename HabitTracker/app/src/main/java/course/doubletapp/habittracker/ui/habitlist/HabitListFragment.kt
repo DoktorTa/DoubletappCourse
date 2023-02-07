@@ -17,7 +17,6 @@ import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentListHabitBinding
-import course.doubletapp.habittracker.vm.Filters
 import course.doubletapp.habittracker.vm.HabitListViewModel
 import course.doubletapp.habittracker.vm.HabitListViewModelFactory
 
@@ -59,11 +58,10 @@ class HabitListFragment: Fragment(), HabitClickListener {
     }
 
     private fun createViewModel(typeHabit: TypeHabit){
-        val habitUseCase = (requireActivity().application as HabitTrackerApplication).ticketUseCase
+        val habitUseCase = (requireActivity().application as HabitTrackerApplication).habitsUseCase
         habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
                 typeHabit.toString(), HabitListViewModel::class.java
         ]
-        Log.d("1111111111111111111111111111111", habitListViewModel.allHabits.value!!.toString())
         habitListViewModel.resetFilter(typeHabit)
     }
 
@@ -71,13 +69,13 @@ class HabitListFragment: Fragment(), HabitClickListener {
         habitListViewModel.allHabits.observe(viewLifecycleOwner) {
             adapter.submitList(listOf()) // Это фиксит очень странный баг
             adapter.submitList(habitListViewModel
-                .applyFilters(habitListViewModel.nowFilters.value!!).toMutableList())
+                .applyFilters(habitListViewModel.nowFilters.value!!))
         }
 
         habitListViewModel.nowFilters.observe(viewLifecycleOwner) {
             adapter.submitList(listOf())
             adapter.submitList(habitListViewModel
-                .applyFilters(habitListViewModel.nowFilters.value!!).toMutableList())
+                .applyFilters(habitListViewModel.nowFilters.value!!))
         }
     }
 

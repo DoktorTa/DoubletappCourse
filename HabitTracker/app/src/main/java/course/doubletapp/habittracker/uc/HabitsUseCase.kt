@@ -1,15 +1,18 @@
 package course.doubletapp.habittracker.uc
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
+import course.doubletapp.habittracker.db.HabitRepository
+import course.doubletapp.habittracker.db.IRepository
 
-class HabitsUseCase {
+class HabitsUseCase(
+    private val repository: IRepository
+    ) {
 
-    private val _habits: MutableLiveData<MutableSet<Habit>> = MutableLiveData(mutableSetOf())
-    val habits: MutableLiveData<MutableSet<Habit>>
-        get() = _habits
+    val habits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
 
     init {
         val habit1 = Habit("One", "Description1", PriorityHabit.HARD, TypeHabit.GOOD, 1, 5, -41277634)
@@ -31,36 +34,24 @@ class HabitsUseCase {
 
         val arrayHabits = arrayOf(habit1, habit2, habit3, habit4, habit5, habit6, habit7, habit8, habit9, habit10, habit11, habit12, habit13, habit14, habit15)
         arrayHabits.forEach {
-            _habits.value!!.add(it)
+            repository.createHabit(it)
         }
     }
 
     fun createHabit(habit: Habit){
-        val set = _habits.value!!
-        set.add(habit)
-        _habits.value = set
+        repository.createHabit(habit)
     }
 
-    fun editHabit(oldHabit: Habit, newHabit: Habit){
-        val set = _habits.value!!
-        set.remove(oldHabit)
-        _habits.value = set
-        createHabit(newHabit)
+    fun editHabit(newHabit: Habit){
+        repository.editHabit(newHabit)
     }
 
     fun removeHabit(habit: Habit){
-        val set = _habits.value!!
-        set.remove(habit)
-        _habits.value = set
+        repository.removeHabit(habit)
     }
 
     fun getHabitByName(nameHabit: String): Habit?{
-        _habits.value!!.forEach {
-            if (it.name == nameHabit){
-                return it
-            }
-        }
-        return null
+        return repository.getHabitByName(nameHabit)
     }
 
 }

@@ -23,7 +23,7 @@ class HabitCreateViewModel(
         val habitNew = Habit(name, description, priority, type, countDay, period, color)
 
         if (habitOld != null){
-            useCase.editHabit(habitOld, habitNew)
+            useCase.editHabit(habitNew)
         } else {
             useCase.createHabit(habitNew)
         }

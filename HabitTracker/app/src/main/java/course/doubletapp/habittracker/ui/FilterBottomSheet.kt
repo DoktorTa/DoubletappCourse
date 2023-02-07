@@ -4,14 +4,11 @@ import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import course.doubletapp.habittracker.HabitTrackerApplication
@@ -58,7 +55,7 @@ class FilterBottomSheet(): Fragment() {
     }
 
     fun setHabitListViewModel(typeHabit: TypeHabit){
-        val habitUseCase = (requireActivity().application as HabitTrackerApplication).ticketUseCase
+        val habitUseCase = (requireActivity().application as HabitTrackerApplication).habitsUseCase
         habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
                 typeHabit.toString(), HabitListViewModel::class.java
         ]
