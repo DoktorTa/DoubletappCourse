@@ -51,7 +51,7 @@ class HabitCreateFragment: Fragment() {
     }
 
     private fun createViewModel(){
-        val habitUseCase = (requireActivity().application as HabitTrackerApplication).ticketUseCase
+        val habitUseCase = (requireActivity().application as HabitTrackerApplication).habitsUseCase
         habitCreateViewModel = HabitCreateViewModel(habitUseCase)
     }
 

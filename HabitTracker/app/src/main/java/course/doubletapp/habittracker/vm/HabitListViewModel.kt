@@ -1,6 +1,7 @@
 package course.doubletapp.habittracker.vm
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import course.doubletapp.habittracker.HabitTrackerApplication
@@ -15,12 +16,18 @@ class HabitListViewModel(
 ): ViewModel() {
 
     private var typeHabitsInPage: TypeHabit? = null
-    var allHabits: MutableLiveData<MutableSet<Habit>> = useCase.habits
+    var allHabits: LiveData<List<Habit>> = useCase.habits
 //    var nowFilters: Filters = Filters(null, null, typeHabitsInPage, null)
     val nowFilters: MutableLiveData<Filters> = MutableLiveData(Filters(null, null, null, null))
 
 
-    fun applyFilters(filters: Filters, filteredObject: MutableSet<Habit> = allHabits.value!!): MutableSet<Habit>{
+    fun applyFilters(filters: Filters): MutableList<Habit>?{
+        if (allHabits.value == null) {
+            return null
+        }
+
+        val filteredObject: MutableSet<Habit> = allHabits.value!!.toMutableSet()
+
         var filtrateObjects: Set<Habit> = setOf()
 
         if (filters.type != null){
@@ -39,7 +46,7 @@ class HabitListViewModel(
             filtrateObjects = filtrateObjects.intersect(filteredObject.filterByDescription(filters.description!!))
         }
 
-        return filtrateObjects.toMutableSet()
+        return filtrateObjects.toMutableList()
     }
 
     fun searchByName(name: String){

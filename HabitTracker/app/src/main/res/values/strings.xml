@@ -40,7 +40,7 @@
     <string name="badText">BAD</string>
 
 <!--  FilterBottomSheet  -->
-    <string name="header_bottom_sheet_filter">Search and filters</string>
+    <string name="header_bottom_sheet_filter">Filters</string>
     <string name="hint_name_habit_filter">Filter by name habit</string>
     <string name="hint_description_habit_filter">Filter by description habit</string>
 

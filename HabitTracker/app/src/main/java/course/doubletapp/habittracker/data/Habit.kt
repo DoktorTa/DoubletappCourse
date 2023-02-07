@@ -1,11 +1,14 @@
 package course.doubletapp.habittracker.data
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+@Entity
 @Parcelize
 data class Habit(
-    var name: String,
+    @PrimaryKey var name: String,
     var description: String,
     var priority: PriorityHabit,
     var type: TypeHabit,
