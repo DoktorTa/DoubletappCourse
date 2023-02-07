@@ -2,6 +2,7 @@ package course.doubletapp.habittracker.ui.habitlist
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -9,13 +10,16 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentListHabitBinding
+import course.doubletapp.habittracker.vm.Filters
 import course.doubletapp.habittracker.vm.HabitListViewModel
+import course.doubletapp.habittracker.vm.HabitListViewModelFactory
 
 class HabitListFragment: Fragment(), HabitClickListener {
 
@@ -56,14 +60,24 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
     private fun createViewModel(typeHabit: TypeHabit){
         val habitUseCase = (requireActivity().application as HabitTrackerApplication).ticketUseCase
-        habitListViewModel = HabitListViewModel(habitUseCase, typeHabit)
+        habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
+                typeHabit.toString(), HabitListViewModel::class.java
+        ]
+        Log.d("1111111111111111111111111111111", habitListViewModel.allHabits.value!!.toString())
+        habitListViewModel.resetFilter(typeHabit)
     }
 
     private fun setObservers(){
         habitListViewModel.allHabits.observe(viewLifecycleOwner) {
             adapter.submitList(listOf()) // Это фиксит очень странный баг
             adapter.submitList(habitListViewModel
-                .applyFilters(habitListViewModel.nowFilters).toMutableList())
+                .applyFilters(habitListViewModel.nowFilters.value!!).toMutableList())
+        }
+
+        habitListViewModel.nowFilters.observe(viewLifecycleOwner) {
+            adapter.submitList(listOf())
+            adapter.submitList(habitListViewModel
+                .applyFilters(habitListViewModel.nowFilters.value!!).toMutableList())
         }
     }
 

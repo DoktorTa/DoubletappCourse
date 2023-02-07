@@ -60,13 +60,12 @@
 
     <style name="TextFilterNameHabit">
         <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:maxLength">@integer/max_len_name_habit</item>
     </style>
 
-    <style name="TextFilterDescriptionHabit">
-        <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textSize">18sp</item>
+    <style name="TextFilterDescriptionHabit" parent="TextFilterNameHabit">
         <item name="android:maxLength">@integer/max_len_description_habit</item>
     </style>
 

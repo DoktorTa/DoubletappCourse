@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
-
     android:background="@drawable/filter_bottom_sheet_background">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/AboutBottomSheet"
-        android:text="Filters"
+        android:text="@string/header_bottom_sheet_filter"
         android:layout_margin="@dimen/text_left_margin"/>
 
     <View
@@ -25,31 +23,49 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/TextFilterNameHabit"
-        android:layout_marginLeft="@dimen/text_left_margin"
-        android:text="Name filter"/>
+        android:layout_marginStart="@dimen/text_left_margin"
+        android:layout_marginEnd="@dimen/text_left_margin"
+        android:hint="@string/hint_name_habit_filter"
+        android:inputType="text"
+        />
 
     <EditText
         android:id="@+id/filterByDescriptionHabit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/TextFilterDescriptionHabit"
-        android:layout_marginLeft="@dimen/text_left_margin"
-        android:text="Description filter"/>
-
-    <RadioGroup
-        android:id="@+id/filterByTypeHabit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/text_left_margin"
+        android:layout_marginStart="@dimen/text_left_margin"
+        android:layout_marginEnd="@dimen/text_left_margin"
+        android:hint="@string/hint_description_habit_filter"
+        android:inputType="text"
         />
 
-    <Spinner
-        android:id="@+id/filterByPriorityHabit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="?attr/colorPrimary"
-        android:dropDownSelector="@drawable/ic_spinner_arrow_24"
-        android:layout_marginLeft="@dimen/text_left_margin"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/filterByPriorityHabit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+
+            android:layout_marginStart="@dimen/text_left_margin"
+            android:layout_marginTop="@dimen/text_left_margin"
+            android:layout_marginEnd="@dimen/text_left_margin"
+            android:layout_marginBottom="@dimen/text_left_margin"
+            android:backgroundTint="?attr/colorPrimary"
+            android:dropDownSelector="@drawable/ic_spinner_arrow_24" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:text="RESET"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 </LinearLayout>

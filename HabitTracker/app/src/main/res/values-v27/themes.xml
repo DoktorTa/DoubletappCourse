@@ -11,10 +11,11 @@
         <item name="colorSecondaryVariant">@color/dark_grey</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">?attr/colorSecondary</item>
+        <item name="android:windowLightStatusBar">false</item>
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">?attr/colorSecondary</item>
+        <item name="android:windowLightNavigationBar">false</item>
     </style>
+
 </resources>
