@@ -8,7 +8,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/habitListRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+
+        android:paddingBottom="133dp"
+        android:clipToPadding="false"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

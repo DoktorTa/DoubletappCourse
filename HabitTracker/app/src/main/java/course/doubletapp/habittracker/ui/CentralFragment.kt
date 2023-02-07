@@ -1,11 +1,13 @@
 package course.doubletapp.habittracker.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.data.TypeHabit
@@ -17,6 +19,7 @@ class CentralFragment: Fragment() {
     private lateinit var binding: FragmentCentralBinding
     private lateinit var adapterViewPager: ViewPagerAdapter
     private lateinit var habitListViewModel: HabitListViewModel
+//    private lateinit var filterBottomSheet: FilterBottomSheet
 
     private val types: Array<String> = TypeHabit.values().map{it.toString()}.toTypedArray()
 
@@ -55,6 +58,14 @@ class CentralFragment: Fragment() {
 
         adapterViewPager = ViewPagerAdapter(childFragmentManager, lifecycle)
         habitList.adapter = adapterViewPager
+
+        habitList.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                val filterBottomSheet = binding.bottomSheet.getFragment<FilterBottomSheet>()
+                filterBottomSheet.setHabitListViewModel(TypeHabit.valueOf(types[position]))
+            }
+        })
     }
 
     private fun navigateToCreateFragment(){

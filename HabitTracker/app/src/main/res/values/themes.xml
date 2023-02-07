@@ -13,12 +13,13 @@
         <item name="android:statusBarColor" >?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">?attr/colorSecondary</item>
+<!--        <item name="android:windowLightNavigationBar">true</item>-->
     </style>
 
 
     <style name="ThemeHabitCreate" parent="Theme.HabitTracker">
-        <item name="android:navigationBarColor">?attr/colorSecondary</item>
+        <item name="android:statusBarColor" >?attr/colorSecondary</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

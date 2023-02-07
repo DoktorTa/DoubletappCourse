@@ -10,18 +10,9 @@ import course.doubletapp.habittracker.ui.habitlist.HabitListFragment
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    companion object {
-        private const val COUNT_PAGE: Int = 2
-    }
-
-    override fun getItemCount(): Int {
-        return COUNT_PAGE
-    }
+    override fun getItemCount(): Int = TypeHabit.values().size
 
     override fun createFragment(position: Int): Fragment {
-        when (position) {
-            0 -> return HabitListFragment.newInstance(TypeHabit.GOOD)
-        }
-        return HabitListFragment.newInstance(TypeHabit.BAD)
+        return HabitListFragment.newInstance(TypeHabit.values()[position])
     }
 }

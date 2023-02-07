@@ -16,6 +16,7 @@
     <string name="priority_text">Priority</string>
     <string name="cansel">CANSEL</string>
     <string name="ok">OK</string>
+    <string name="color_picker_stub">HSV: \nHEX: \nINT: </string>
 
 <!--  HabitListFragment  -->
     <string name="habit_menu_remove">Remove</string>
@@ -24,9 +25,11 @@
     <string name="habit_remove_dialog_cansel">CANSEL</string>
     <string name="habit_remove_dialog_msg">Want to remove a habit?</string>
 
-
 <!--  HabitViewHolder  -->
     <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>
+
+<!--  ColorPickerHabit  -->
+    <string name="infoColor">INT: %1$s \nHEX: 0x%2$s \nHSV %3$s</string>
 
 <!--  PriorityHabit  -->
     <string name="hardText">HARD</string>
@@ -35,5 +38,10 @@
 
     <string name="goodText">GOOD</string>
     <string name="badText">BAD</string>
+
+<!--  FilterBottomSheet  -->
+    <string name="header_bottom_sheet_filter">Search and filters</string>
+    <string name="hint_name_habit_filter">Filter by name habit</string>
+    <string name="hint_description_habit_filter">Filter by description habit</string>
 
 </resources>
