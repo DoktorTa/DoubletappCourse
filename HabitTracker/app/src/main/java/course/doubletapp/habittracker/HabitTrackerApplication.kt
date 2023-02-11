@@ -10,10 +10,9 @@ class HabitTrackerApplication: Application() {
 
     val dataBase by lazy { HabitDataBase.getInstance(this) }
     val repository by lazy { HabitRepository(dataBase.habitDao()) }
+    val habitsUseCase by lazy {HabitsUseCase(repository)}
 
     lateinit var mInstance: HabitTrackerApplication
-
-    val habitsUseCase by lazy {HabitsUseCase(repository)}
 
     override fun onCreate() {
         super.onCreate()
