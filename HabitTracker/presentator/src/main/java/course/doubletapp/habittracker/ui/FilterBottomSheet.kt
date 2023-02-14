@@ -33,7 +33,7 @@ class FilterBottomSheet(): Fragment() {
 
         if (isAdded) {
             setSpinnerAdapter()
-            setHabitListViewModel(course.doubletapp.habittracker.domain.entity.TypeHabit.GOOD)
+            setHabitListViewModel(TypeHabit.GOOD)
             setObserver()
         }
 
@@ -54,8 +54,10 @@ class FilterBottomSheet(): Fragment() {
         }
     }
 
-    fun setHabitListViewModel(typeHabit: course.doubletapp.habittracker.domain.entity.TypeHabit){
-        val habitUseCase = (requireActivity().application as HabitTrackerApplication).habitsUseCase
+    fun setHabitListViewModel(typeHabit: TypeHabit){
+        val appComponent = (requireActivity().application as HabitTrackerApplication).appComponent
+
+        val habitUseCase = appComponent.getHabitUseCase()
         habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
                 typeHabit.toString(), HabitListViewModel::class.java
         ]
@@ -64,7 +66,7 @@ class FilterBottomSheet(): Fragment() {
 
     private fun setSpinnerAdapter(){
 
-        val priorityVariant: MutableList<String> = course.doubletapp.habittracker.domain.entity.PriorityHabit.values().map{it.toString()}.toMutableList()
+        val priorityVariant: MutableList<String> = PriorityHabit.values().map{it.toString()}.toMutableList()
         priorityVariant.add(0, "ALL")
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
@@ -88,7 +90,7 @@ class FilterBottomSheet(): Fragment() {
                 id: Long
             ) {
                 if (binding.filterByPriorityHabit.selectedItem.toString().uppercase() != "ALL"){
-                    val priorityFilter = course.doubletapp.habittracker.domain.entity.PriorityHabit.valueOf(
+                    val priorityFilter = PriorityHabit.valueOf(
                         binding.filterByPriorityHabit.selectedItem.toString().uppercase()
                     )
                     habitListViewModel.searchByPriority(priorityFilter)

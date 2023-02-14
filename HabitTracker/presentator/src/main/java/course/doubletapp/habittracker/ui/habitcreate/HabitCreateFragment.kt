@@ -41,7 +41,7 @@ class HabitCreateFragment: Fragment() {
             generateRadioButton()
 
             if (arguments != null) {
-                val habitEdit: course.doubletapp.habittracker.domain.entity.Habit = habitCreateViewModel
+                val habitEdit: Habit = habitCreateViewModel
                     .getHabitByName(requireArguments().getString("Habit")!!)!!
                 loadHabitField(habitEdit)
             }
@@ -51,11 +51,13 @@ class HabitCreateFragment: Fragment() {
     }
 
     private fun createViewModel(){
-        val habitUseCase = (requireActivity().application as HabitTrackerApplication).habitsUseCase
+        val appComponent = (requireActivity().application as HabitTrackerApplication).appComponent
+
+        val habitUseCase = appComponent.getHabitUseCase()
         habitCreateViewModel = HabitCreateViewModel(habitUseCase)
     }
 
-    private fun loadHabitField(habit: course.doubletapp.habittracker.domain.entity.Habit){
+    private fun loadHabitField(habit: Habit){
         binding.nameHabit.setText(habit.name)
         binding.descriptionHabit.setText(habit.description)
         binding.countHabit.setText(habit.countDay.toString())
@@ -68,7 +70,7 @@ class HabitCreateFragment: Fragment() {
 
     private fun generateRadioButton(){
         val radioGroup: RadioGroup = binding.typeHabit
-        val typesHabit = course.doubletapp.habittracker.domain.entity.TypeHabit.values().map{it.toString()}
+        val typesHabit = TypeHabit.values().map{it.toString()}
 
         for (type in typesHabit) {
             val radioButton = RadioButton(context)
@@ -82,7 +84,7 @@ class HabitCreateFragment: Fragment() {
     }
 
     private fun setSpinnerAdapter(){
-        val priorityVariant: List<String> = course.doubletapp.habittracker.domain.entity.PriorityHabit.values().map{it.toString()}
+        val priorityVariant: List<String> = PriorityHabit.values().map{it.toString()}
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_spinner_item,
@@ -138,8 +140,8 @@ class HabitCreateFragment: Fragment() {
             period = binding.periodHabit.text.toString().toInt(),
             countDay = binding.countHabit.text.toString().toInt(),
             color = colorPicker.selectedColor!!,
-            priority = course.doubletapp.habittracker.domain.entity.PriorityHabit.valueOf(binding.priorityHabit.selectedItem.toString().uppercase()),
-            type = course.doubletapp.habittracker.domain.entity.TypeHabit.valueOf(typeHabit!!)
+            priority = PriorityHabit.valueOf(binding.priorityHabit.selectedItem.toString().uppercase()),
+            type = TypeHabit.valueOf(typeHabit!!)
         )
 
         canselButtonClick()

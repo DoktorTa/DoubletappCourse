@@ -12,7 +12,7 @@ import course.doubletapp.habittracker.databinding.HabitItemBinding
 
 class HabitListRecyclerAdapter(
     private val habitClickListener: HabitClickListener
-    ): ListAdapter<course.doubletapp.habittracker.domain.entity.Habit, HabitListRecyclerAdapter.HabitViewHolder>(HABIT_COMPARATOR){
+    ): ListAdapter<Habit, HabitListRecyclerAdapter.HabitViewHolder>(HABIT_COMPARATOR){
 
     class HabitViewHolder(
         private val itemBinding: HabitItemBinding,
@@ -44,12 +44,12 @@ class HabitListRecyclerAdapter(
     }
 
     companion object {
-        private val HABIT_COMPARATOR = object : DiffUtil.ItemCallback<course.doubletapp.habittracker.domain.entity.Habit>() {
-            override fun areItemsTheSame(oldItem: course.doubletapp.habittracker.domain.entity.Habit, newItem: course.doubletapp.habittracker.domain.entity.Habit): Boolean {
+        private val HABIT_COMPARATOR = object : DiffUtil.ItemCallback<Habit>() {
+            override fun areItemsTheSame(oldItem: Habit, newItem: Habit): Boolean {
                 return oldItem === newItem
             }
 
-            override fun areContentsTheSame(oldItem: course.doubletapp.habittracker.domain.entity.Habit, newItem: course.doubletapp.habittracker.domain.entity.Habit): Boolean {
+            override fun areContentsTheSame(oldItem: Habit, newItem: Habit): Boolean {
                 return oldItem.name == newItem.name
             }
         }

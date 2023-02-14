@@ -3,6 +3,7 @@ package course.doubletapp.habittracker
 import android.app.Application
 import android.content.Context
 import course.doubletapp.habittracker.di.AppComponent
+import course.doubletapp.habittracker.di.DaggerAppComponent
 
 
 class HabitTrackerApplication: Application() {

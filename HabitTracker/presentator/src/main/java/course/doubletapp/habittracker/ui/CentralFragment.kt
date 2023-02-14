@@ -17,7 +17,7 @@ class CentralFragment: Fragment() {
     private lateinit var binding: FragmentCentralBinding
     private lateinit var adapterViewPager: ViewPagerAdapter
 
-    private val types: Array<String> = course.doubletapp.habittracker.domain.entity.TypeHabit.values().map{it.toString()}.toTypedArray()
+    private val types: Array<String> = TypeHabit.values().map{it.toString()}.toTypedArray()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +59,7 @@ class CentralFragment: Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 val filterBottomSheet = binding.bottomSheet.getFragment<FilterBottomSheet>()
-                filterBottomSheet.setHabitListViewModel(course.doubletapp.habittracker.domain.entity.TypeHabit.valueOf(types[position]))
+                filterBottomSheet.setHabitListViewModel(TypeHabit.valueOf(types[position]))
             }
         })
     }

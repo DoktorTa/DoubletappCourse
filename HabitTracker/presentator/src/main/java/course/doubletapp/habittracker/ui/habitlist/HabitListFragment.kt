@@ -32,7 +32,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
         private const val HABIT_EDIT_CODE = 0
         private const val HABIT_REMOVE_CODE = 1
 
-        fun newInstance(typeHabit: course.doubletapp.habittracker.domain.entity.TypeHabit): HabitListFragment {
+        fun newInstance(typeHabit: TypeHabit): HabitListFragment {
             val fragment = HabitListFragment()
             fragment.arguments = bundleOf(HABIT_TYPE to typeHabit)
             return fragment
@@ -48,7 +48,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
         binding = FragmentListHabitBinding.inflate(inflater)
 
         if (isAdded) {
-            val typeHabit = arguments?.get(HABIT_TYPE) as? course.doubletapp.habittracker.domain.entity.TypeHabit
+            val typeHabit = arguments?.get(HABIT_TYPE) as? TypeHabit
             createViewModel(typeHabit!!)
             setRecyclerAdapter()
             setObservers()
@@ -58,8 +58,10 @@ class HabitListFragment: Fragment(), HabitClickListener {
         return binding.root
     }
 
-    private fun createViewModel(typeHabit: course.doubletapp.habittracker.domain.entity.TypeHabit){
-        val habitUseCase = (requireActivity().application as HabitTrackerApplication).habitsUseCase
+    private fun createViewModel(typeHabit: TypeHabit){
+        val appComponent = (requireActivity().application as HabitTrackerApplication).appComponent
+
+        val habitUseCase = appComponent.getHabitUseCase()
         habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
                 typeHabit.toString(), HabitListViewModel::class.java
         ]
