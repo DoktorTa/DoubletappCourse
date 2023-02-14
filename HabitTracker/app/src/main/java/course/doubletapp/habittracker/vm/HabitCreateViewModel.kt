@@ -5,6 +5,8 @@ import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.uc.HabitsUseCase
+import java.util.Date
+import kotlin.random.Random
 
 class HabitCreateViewModel(
     private val useCase: HabitsUseCase
@@ -17,10 +19,20 @@ class HabitCreateViewModel(
         type: TypeHabit,
         countDay: Int,
         period: Int,
-        color: Int
+        color: Int,
     ){
         val habitOld = getHabitByName(name)
-        val habitNew = Habit(name, description, priority, type, countDay, period, color)
+        val habitNew = Habit(
+            name = name,
+            description = description,
+            priority = priority,
+            type = type,
+            countDay = countDay,
+            period = period,
+            color = color,
+            id = "",
+            date = (Date().time / 1000).toInt()
+        )
 
         if (habitOld != null){
             useCase.editHabit(habitNew)

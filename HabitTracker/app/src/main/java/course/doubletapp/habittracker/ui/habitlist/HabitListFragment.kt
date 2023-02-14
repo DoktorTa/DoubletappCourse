@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -52,6 +53,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
             createViewModel(typeHabit!!)
             setRecyclerAdapter()
             setObservers()
+            habitListViewModel.loadHabit()
         }
 
         return binding.root
@@ -76,6 +78,10 @@ class HabitListFragment: Fragment(), HabitClickListener {
             adapter.submitList(listOf())
             adapter.submitList(habitListViewModel
                 .applyFilters(habitListViewModel.nowFilters.value!!))
+        }
+
+        habitListViewModel.serverStatus.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
 
