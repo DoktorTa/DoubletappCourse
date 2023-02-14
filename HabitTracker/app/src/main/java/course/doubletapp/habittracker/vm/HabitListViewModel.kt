@@ -17,9 +17,12 @@ class HabitListViewModel(
 
     private var typeHabitsInPage: TypeHabit? = null
     var allHabits: LiveData<List<Habit>> = useCase.habits
-//    var nowFilters: Filters = Filters(null, null, typeHabitsInPage, null)
+    var serverStatus: LiveData<String> = MutableLiveData("")
     val nowFilters: MutableLiveData<Filters> = MutableLiveData(Filters(null, null, null, null))
 
+    fun loadHabit() {
+        useCase.loadHabitFromServer()
+    }
 
     fun applyFilters(filters: Filters): MutableList<Habit>?{
         if (allHabits.value == null) {

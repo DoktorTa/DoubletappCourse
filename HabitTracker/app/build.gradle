@@ -5,6 +5,10 @@ plugins {
     id 'kotlin-kapt'
 }
 
+ext {
+    SERVER_TOCEN = '52ae48f4-e93e-4c87-b5a1-2e096e569d67'
+}
+
 android {
     namespace 'course.doubletapp.habittracker'
     compileSdk 32
@@ -69,5 +73,12 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
 
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+
 
 }

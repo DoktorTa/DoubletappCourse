@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import course.doubletapp.habittracker.data.Habit
 
 
-@Database(entities = [Habit::class], version = 1)
+@Database(entities = [HabitEntity::class], version = 2)
 abstract class HabitDataBase: RoomDatabase() {
     abstract fun habitDao(): HabitDao
 
