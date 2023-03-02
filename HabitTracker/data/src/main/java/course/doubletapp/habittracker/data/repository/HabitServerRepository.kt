@@ -1,9 +1,11 @@
 package course.doubletapp.habittracker.data.repository
 
+import android.util.Log
 import course.doubletapp.habittracker.data.db.HabitDao
 import course.doubletapp.habittracker.data.db.HabitEntity
 import course.doubletapp.habittracker.domain.repository.IRepository
 import course.doubletapp.habittracker.data.network.*
+import course.doubletapp.habittracker.data.network.data.HabitDoneServer
 import course.doubletapp.habittracker.data.network.data.HabitServer
 import course.doubletapp.habittracker.data.network.data.HabitUidServer
 import course.doubletapp.habittracker.domain.ApiResponse
@@ -45,8 +47,8 @@ class HabitServerRepository @Inject constructor(
         }
     }
 
-    override fun getHabitByName(name: String): Habit? {
-        return null
+    override fun getHabitById(id: String): Habit? {
+        return habitsDao.getHabitById(id)?.toHabit()
     }
 
     override suspend fun createHabit(habit: Habit): ApiResponse<HabitUid> {
@@ -61,13 +63,13 @@ class HabitServerRepository @Inject constructor(
             updateHabitInLocalDatabase(HabitEntity.fromHabit(habit))
             return apiResponse
 
-        } catch (e: java.lang.RuntimeException) {
+        } catch (e: RuntimeException) {
             ApiResponse.Error(e)
         }
     }
 
-    override fun editHabit(habit: Habit) {
-        TODO("Not yet implemented")
+    override suspend fun editHabit(habit: Habit): ApiResponse<HabitUid> {
+        return createHabit(habit)
     }
 
     override suspend fun removeHabit(habit: Habit) : ApiResponse<Unit>{
@@ -75,9 +77,19 @@ class HabitServerRepository @Inject constructor(
             retryRequest { habitServerAPI.removeHabit(HabitUidServer(habit.id)) }
             habitsDao.removeHabit(HabitEntity.fromHabit(habit))
             ApiResponse.Success(data = Unit)
-        } catch (e: java.lang.RuntimeException) {
+        } catch (e: RuntimeException) {
             ApiResponse.Error(e)
         }
     }
 
+    override suspend fun doneHabit(habit: Habit): ApiResponse<Unit> {
+        return try {
+            Log.d("HABITSERVERREPOSITORY", "111111111111111111111 ${habit.id}, ${habit.doneDates.last()}")
+            retryRequest { habitServerAPI.doneHabit(HabitDoneServer(habit.doneDates.last(), habit.id)) }
+            habitsDao.editHabit(HabitEntity.fromHabit(habit))
+            ApiResponse.Success(data = Unit)
+        } catch (e: RuntimeException) {
+            ApiResponse.Error(e)
+        }
+    }
 }

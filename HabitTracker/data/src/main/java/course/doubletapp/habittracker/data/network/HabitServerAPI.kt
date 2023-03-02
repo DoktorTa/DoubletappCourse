@@ -1,16 +1,17 @@
 package course.doubletapp.habittracker.data.network
 
+import course.doubletapp.habittracker.data.network.data.HabitDoneServer
 import course.doubletapp.habittracker.data.network.data.HabitServer
 import course.doubletapp.habittracker.data.network.data.HabitUidServer
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.HTTP
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface HabitServerAPI {
 
     @GET("habit")
     suspend fun getHabits(): List<HabitServer>
+
+    @POST("habit_done")
+    suspend fun doneHabit(@Body habitDoneDTO: HabitDoneServer)
 
     @PUT("habit")
     suspend fun saveHabit(@Body habitDTO: HabitServer): HabitUidServer

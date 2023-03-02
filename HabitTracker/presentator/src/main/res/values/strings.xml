@@ -20,6 +20,7 @@
 
 <!--  HabitListFragment  -->
     <string name="habit_menu_remove">Remove</string>
+    <string name="habit_menu_complete">Complete</string>
     <string name="habit_menu_edit">Edit</string>
     <string name="habit_remove_dialog_ok">OK</string>
     <string name="habit_remove_dialog_cansel">CANSEL</string>

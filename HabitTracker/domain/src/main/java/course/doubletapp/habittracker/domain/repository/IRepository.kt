@@ -10,11 +10,13 @@ interface IRepository {
 
     suspend fun loadHabitFromServer() : ApiResponse<Unit>
 
-    fun getHabitByName(name: String): Habit?
+    fun getHabitById(id: String): Habit?
 
     suspend fun createHabit(habit: Habit): ApiResponse<HabitUid>
 
-    fun editHabit(habit: Habit)
+    suspend fun editHabit(habit: Habit): ApiResponse<HabitUid>
 
     suspend fun removeHabit(habit: Habit)  : ApiResponse<Unit>
+
+    suspend fun doneHabit(habit: Habit): ApiResponse<Unit>
 }

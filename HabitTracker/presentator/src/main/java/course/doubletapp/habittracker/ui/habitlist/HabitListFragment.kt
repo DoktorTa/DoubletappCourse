@@ -2,6 +2,7 @@ package course.doubletapp.habittracker.ui.habitlist
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -31,6 +32,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
         private const val HABIT_EDIT_CODE = 0
         private const val HABIT_REMOVE_CODE = 1
+        private const val HABIT_COMPLETE_CODE = 2
 
         fun newInstance(typeHabit: TypeHabit): HabitListFragment {
             val fragment = HabitListFragment()
@@ -98,24 +100,32 @@ class HabitListFragment: Fragment(), HabitClickListener {
         habitList.layoutManager = layoutManager
     }
 
-    override fun habitClickListener(view: View, name: String) {
+    override fun habitClickListener(view: View, idHabit: String) {
+        Log.d("HabitListFragment", "11111111111111111 $idHabit")
         val popupMenu = PopupMenu(requireContext(), view)
 
         popupMenu.menu.add(0, HABIT_EDIT_CODE, Menu.NONE,
             requireContext().getString(R.string.habit_menu_edit))
         popupMenu.menu.add(0, HABIT_REMOVE_CODE, Menu.NONE,
             requireContext().getString(R.string.habit_menu_remove))
+        popupMenu.menu.add(0, HABIT_COMPLETE_CODE, Menu.NONE,
+            requireContext().getString(R.string.habit_menu_complete))
 
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
                 HABIT_EDIT_CODE -> {
                     findNavController().navigate(
                         R.id.action_centralFragment_to_habitCreateFragment,
-                        bundleOf("Habit" to name)
+                        bundleOf("Habit" to idHabit)
                     )
                 }
                 HABIT_REMOVE_CODE -> {
-                    createRemoveDialog(name)
+                    createRemoveDialog(idHabit)
+                }
+                HABIT_COMPLETE_CODE -> {
+                    val textAnswer = habitListViewModel.completeHabit(idHabit)
+                    Toast.makeText(requireContext(), textAnswer, Toast.LENGTH_LONG).show()
+
                 }
             }
             return@setOnMenuItemClickListener true

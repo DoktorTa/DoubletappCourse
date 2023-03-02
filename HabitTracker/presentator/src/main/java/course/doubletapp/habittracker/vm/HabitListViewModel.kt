@@ -9,12 +9,11 @@ import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.domain.uc.HabitsUseCase
 
 class HabitListViewModel(
-    val useCase: course.doubletapp.habittracker.domain.uc.HabitsUseCase,
-//    private val typeHabitsInPage: TypeHabit
+    val useCase: HabitsUseCase,
 ): ViewModel() {
 
-    private var typeHabitsInPage: course.doubletapp.habittracker.domain.entity.TypeHabit? = null
-    var allHabits: LiveData<List<course.doubletapp.habittracker.domain.entity.Habit>> = useCase.habits
+    private var typeHabitsInPage: TypeHabit? = null
+    var allHabits: LiveData<List<Habit>> = useCase.habits
     var serverStatus: LiveData<String> = MutableLiveData("")
     val nowFilters: MutableLiveData<Filters> = MutableLiveData(Filters(null, null, null, null))
 
@@ -22,14 +21,14 @@ class HabitListViewModel(
         useCase.loadHabitFromServer()
     }
 
-    fun applyFilters(filters: Filters): MutableList<course.doubletapp.habittracker.domain.entity.Habit>?{
+    fun applyFilters(filters: Filters): MutableList<Habit>?{
         if (allHabits.value == null) {
             return null
         }
 
-        val filteredObject: MutableSet<course.doubletapp.habittracker.domain.entity.Habit> = allHabits.value!!.toMutableSet()
+        val filteredObject: MutableSet<Habit> = allHabits.value!!.toMutableSet()
 
-        var filtrateObjects: Set<course.doubletapp.habittracker.domain.entity.Habit> = setOf()
+        var filtrateObjects: Set<Habit> = setOf()
 
         if (filters.type != null){
             filtrateObjects = filteredObject.filterByType(filters.type!!)
@@ -74,7 +73,7 @@ class HabitListViewModel(
         nowFilters.value = f
     }
 
-    fun searchByPriority(priority: course.doubletapp.habittracker.domain.entity.PriorityHabit?){
+    fun searchByPriority(priority: PriorityHabit?){
         val f = nowFilters.value!!
 
         if (priority != null) {
@@ -86,49 +85,72 @@ class HabitListViewModel(
         nowFilters.value = f
     }
 
-    fun resetFilter(typeHabits: course.doubletapp.habittracker.domain.entity.TypeHabit? = typeHabitsInPage){
+    fun resetFilter(typeHabits: TypeHabit? = typeHabitsInPage){
         typeHabitsInPage = typeHabits
         nowFilters.value = Filters(null, null, typeHabitsInPage, null)
     }
 
-    fun removeHabit(nameHabit: String){
-        val habit: course.doubletapp.habittracker.domain.entity.Habit? = useCase.getHabitByName(nameHabit)
+    fun removeHabit(idHabit: String){
+        val habit: Habit? = useCase.getHabitById(idHabit)
         if (habit !== null){
             useCase.removeHabit(habit)
         }
+    }
+
+    fun completeHabit(idHabit: String): String {
+        val habit: Habit = useCase.getHabitById(idHabit)!!
+
+        useCase.completeHabit(habit)
+        val remainingExec = useCase.getNumberRemainingExecutions(habit)
+        if (habit.type == TypeHabit.BAD){
+            if (remainingExec > 0) {
+                return "Можно сделать еще $remainingExec раз."
+            } else {
+                return "Больше нельзя."
+            }
+
+        } else if (habit.type == TypeHabit.GOOD){
+            if (remainingExec > 0){
+                return "Еще раз $remainingExec надо."
+            } else {
+                return "Братан, хорош, давай, давай, вперёд! Привычка в кайф, можно еще! Вообще красавчик! Можно вот этого вот почаще?"
+            }
+        }
+
+        return "ERROR"
     }
 }
 
 data class Filters(
     var name: String?,
     var description: String?,
-    var type: course.doubletapp.habittracker.domain.entity.TypeHabit?,
-    var priority: course.doubletapp.habittracker.domain.entity.PriorityHabit?
+    var type: TypeHabit?,
+    var priority: PriorityHabit?
 ){}
 
-fun MutableSet<course.doubletapp.habittracker.domain.entity.Habit>.filterByType(valueFilter: course.doubletapp.habittracker.domain.entity.TypeHabit): MutableSet<course.doubletapp.habittracker.domain.entity.Habit> {
-    val filteredAllHabits: MutableSet<course.doubletapp.habittracker.domain.entity.Habit> = this.filter{
+fun MutableSet<Habit>.filterByType(valueFilter: TypeHabit): MutableSet<Habit> {
+    val filteredAllHabits: MutableSet<Habit> = this.filter{
         it.type == valueFilter
     }.toMutableSet()
     return filteredAllHabits
 }
 
-fun MutableSet<course.doubletapp.habittracker.domain.entity.Habit>.filterByName(valueFilter: String): MutableSet<course.doubletapp.habittracker.domain.entity.Habit> {
-    val filteredAllHabits: MutableSet<course.doubletapp.habittracker.domain.entity.Habit> = this.filter{
+fun MutableSet<Habit>.filterByName(valueFilter: String): MutableSet<Habit> {
+    val filteredAllHabits: MutableSet<Habit> = this.filter{
         it.name.contains(valueFilter)
     }.toMutableSet()
     return filteredAllHabits
 }
 
-fun MutableSet<course.doubletapp.habittracker.domain.entity.Habit>.filterByDescription(valueFilter: String): MutableSet<course.doubletapp.habittracker.domain.entity.Habit> {
-    val filteredAllHabits: MutableSet<course.doubletapp.habittracker.domain.entity.Habit> = this.filter{
+fun MutableSet<Habit>.filterByDescription(valueFilter: String): MutableSet<Habit> {
+    val filteredAllHabits: MutableSet<Habit> = this.filter{
         it.description.contains(valueFilter)
     }.toMutableSet()
     return filteredAllHabits
 }
 
-fun MutableSet<course.doubletapp.habittracker.domain.entity.Habit>.filterByPriority(valueFilter: course.doubletapp.habittracker.domain.entity.PriorityHabit): MutableSet<course.doubletapp.habittracker.domain.entity.Habit> {
-    val filteredAllHabits: MutableSet<course.doubletapp.habittracker.domain.entity.Habit> = this.filter{
+fun MutableSet<Habit>.filterByPriority(valueFilter: PriorityHabit): MutableSet<Habit> {
+    val filteredAllHabits: MutableSet<Habit> = this.filter{
         it.priority == valueFilter
     }.toMutableSet()
     return filteredAllHabits

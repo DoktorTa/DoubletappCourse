@@ -19,7 +19,7 @@ class HabitListRecyclerAdapter(
         private var habitClickListener: HabitClickListener
     ): RecyclerView.ViewHolder(itemBinding.root){
 
-        fun bind(habit: course.doubletapp.habittracker.domain.entity.Habit){
+        fun bind(habit: Habit){
             itemBinding.nameHabit.text = habit.name
             itemBinding.descriptionHabit.text = habit.description
 
@@ -31,14 +31,14 @@ class HabitListRecyclerAdapter(
                 R.string.infoHabit,
                 habit.priority,
                 habit.type,
-                habit.countDay.toString(),
+                habit.count.toString(),
                 habit.period.toString()
             )
 
             itemBinding.infoHabit.text = info
 
             itemView.setOnClickListener {
-                habitClickListener.habitClickListener(it, habit.name)
+                habitClickListener.habitClickListener(it, habit.id)
             }
         }
     }

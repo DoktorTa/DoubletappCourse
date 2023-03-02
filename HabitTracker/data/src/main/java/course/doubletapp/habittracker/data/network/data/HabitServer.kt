@@ -1,9 +1,10 @@
 package course.doubletapp.habittracker.data.network.data
 
+import course.doubletapp.habittracker.data.db.HabitEntity
 import course.doubletapp.habittracker.domain.entity.Habit
 
 data class HabitServer(
-    var done_dates: List<Int> = listOf(),
+    var done_dates: List<Int>,
     var uid: String,
     var frequency: Int,
     var priority: Int,
@@ -19,7 +20,7 @@ data class HabitServer(
     companion object {
         fun habitToHabitServer(habit: Habit) = HabitServer(
             color = habit.color,
-            count = habit.countDay,
+            count = habit.count,
             description = habit.description,
             title = habit.name,
             type = habit.type.ordinal,
@@ -27,19 +28,21 @@ data class HabitServer(
             date = habit.date,
             frequency = habit.period,
             uid = habit.id,
+            done_dates = habit.doneDates
         )
     }
 
-        fun toHabitEntity() = course.doubletapp.habittracker.data.db.HabitEntity(
+        fun toHabitEntity() = HabitEntity(
             name = title,
             description = description,
             priority = priority,
             color = color,
-            countDay = count,
+            count = count,
             type = type,
             date = date,
             id = uid,
-            period = frequency
+            period = frequency,
+            doneDates = done_dates
         )
 
 }

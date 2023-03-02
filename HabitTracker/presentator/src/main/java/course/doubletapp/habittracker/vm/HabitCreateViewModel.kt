@@ -1,46 +1,47 @@
 package course.doubletapp.habittracker.vm
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import course.doubletapp.habittracker.domain.entity.Habit
 import course.doubletapp.habittracker.domain.entity.PriorityHabit
 import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.domain.uc.HabitsUseCase
 import java.util.Date
+import kotlin.random.Random
 
 class HabitCreateViewModel(
-    private val useCase: course.doubletapp.habittracker.domain.uc.HabitsUseCase
+    private val useCase: HabitsUseCase
 ): ViewModel() {
 
     fun addHabit(
         name: String,
         description: String,
-        priority: course.doubletapp.habittracker.domain.entity.PriorityHabit,
-        type: course.doubletapp.habittracker.domain.entity.TypeHabit,
+        priority: PriorityHabit,
+        type: TypeHabit,
         countDay: Int,
         period: Int,
         color: Int,
-    ){
-        val habitOld = getHabitByName(name)
-        val habitNew = course.doubletapp.habittracker.domain.entity.Habit(
+        id: String,
+        date: Int,
+        doneDate: List<Int>
+    ) {
+        val habitNew = Habit(
             name = name,
             description = description,
             priority = priority,
             type = type,
-            countDay = countDay,
+            count = countDay,
             period = period,
             color = color,
-            id = "",
-            date = (Date().time / 1000).toInt()
+            id = id,
+            date = date,
+            doneDates = doneDate
         )
 
-        if (habitOld != null){
-            useCase.editHabit(habitNew)
-        } else {
-            useCase.createHabit(habitNew)
-        }
+        useCase.createHabit(habitNew)
     }
 
-    fun getHabitByName(name: String): course.doubletapp.habittracker.domain.entity.Habit? {
-        return useCase.getHabitByName(name)
+    fun getHabitByName(idHabit: String): Habit? {
+        return useCase.getHabitById(idHabit)
     }
 }

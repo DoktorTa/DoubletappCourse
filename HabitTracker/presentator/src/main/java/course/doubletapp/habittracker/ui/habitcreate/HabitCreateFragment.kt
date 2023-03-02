@@ -16,6 +16,8 @@ import course.doubletapp.habittracker.domain.entity.PriorityHabit
 import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentHabitCreateBinding
 import course.doubletapp.habittracker.vm.HabitCreateViewModel
+import java.util.*
+import kotlin.random.Random
 
 class HabitCreateFragment: Fragment() {
 
@@ -24,6 +26,9 @@ class HabitCreateFragment: Fragment() {
     private lateinit var habitCreateViewModel: HabitCreateViewModel
 
     private var typeHabit: String? = null
+    private var idHabit: String = ""
+    private var dateHabit: Int = (Date().time / 1000).toInt()
+    private var doneDateHabit: List<Int> = listOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,12 +65,15 @@ class HabitCreateFragment: Fragment() {
     private fun loadHabitField(habit: Habit){
         binding.nameHabit.setText(habit.name)
         binding.descriptionHabit.setText(habit.description)
-        binding.countHabit.setText(habit.countDay.toString())
+        binding.countHabit.setText(habit.count.toString())
         binding.periodHabit.setText(habit.period.toString())
 
         colorPicker.changeColorSelectedSquare(habit.color)
         (binding.typeHabit.getChildAt(habit.type.ordinal) as RadioButton).isChecked = true
         binding.priorityHabit.setSelection(habit.priority.ordinal)
+
+        idHabit = habit.id
+        doneDateHabit = habit.doneDates
     }
 
     private fun generateRadioButton(){
@@ -106,7 +114,6 @@ class HabitCreateFragment: Fragment() {
                 typeHabit = this.text.toString()
             }
         }
-
     }
 
     private fun okButtonClick(){
@@ -141,7 +148,10 @@ class HabitCreateFragment: Fragment() {
             countDay = binding.countHabit.text.toString().toInt(),
             color = colorPicker.selectedColor!!,
             priority = PriorityHabit.valueOf(binding.priorityHabit.selectedItem.toString().uppercase()),
-            type = TypeHabit.valueOf(typeHabit!!)
+            type = TypeHabit.valueOf(typeHabit!!),
+            id = idHabit,
+            date = dateHabit,
+            doneDate = doneDateHabit
         )
 
         canselButtonClick()
