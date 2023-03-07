@@ -1,6 +1,7 @@
 package course.doubletapp.habittracker.ui
 
 import android.R
+import course.doubletapp.habittracker.R as MyR
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -67,7 +68,7 @@ class FilterBottomSheet(): Fragment() {
     private fun setSpinnerAdapter(){
 
         val priorityVariant: MutableList<String> = PriorityHabit.values().map{it.toString()}.toMutableList()
-        priorityVariant.add(0, "ALL")
+        priorityVariant.add(0, requireContext().getString(MyR.string.priority_type_habit_all))
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
             R.layout.simple_spinner_item,
@@ -89,7 +90,8 @@ class FilterBottomSheet(): Fragment() {
                 position: Int,
                 id: Long
             ) {
-                if (binding.filterByPriorityHabit.selectedItem.toString().uppercase() != "ALL"){
+                if (binding.filterByPriorityHabit.selectedItem.toString().uppercase()
+                    != requireContext().getString(MyR.string.priority_type_habit_all)){
                     val priorityFilter = PriorityHabit.valueOf(
                         binding.filterByPriorityHabit.selectedItem.toString().uppercase()
                     )

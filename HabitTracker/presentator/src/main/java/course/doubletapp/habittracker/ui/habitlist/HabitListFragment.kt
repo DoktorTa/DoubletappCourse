@@ -3,7 +3,6 @@ package course.doubletapp.habittracker.ui.habitlist
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -32,6 +31,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
     companion object {
         private const val HABIT_TYPE = "TYPE"
+        private const val HABIT_KEY_BUNDLE_DATA = "Habit"
 
         private const val HABIT_EDIT_CODE = 0
         private const val HABIT_REMOVE_CODE = 1
@@ -74,16 +74,6 @@ class HabitListFragment: Fragment(), HabitClickListener {
     }
 
     private fun createViewModel(typeHabit: TypeHabit){
-//        val appComponent = (requireActivity().application as HabitTrackerApplication).appComponent
-//
-//        val habitUseCase = appComponent.getHabitUseCase()
-//
-//        (requireActivity().application as HabitTrackerApplication)
-//            .appComponent
-//            .habitListSubComponent()
-//            .build()
-//            .inject(this)
-
         habitListViewModel = ViewModelProvider(requireActivity(), habitListViewModelFactory)[
                 typeHabit.toString(), HabitListViewModel::class.java
         ]
@@ -121,7 +111,6 @@ class HabitListFragment: Fragment(), HabitClickListener {
     }
 
     override fun habitClickListener(view: View, idHabit: String) {
-        Log.d("HabitListFragment", "11111111111111111 $idHabit")
         val popupMenu = PopupMenu(requireContext(), view)
 
         popupMenu.menu.add(0, HABIT_EDIT_CODE, Menu.NONE,
@@ -136,7 +125,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
                 HABIT_EDIT_CODE -> {
                     findNavController().navigate(
                         R.id.action_centralFragment_to_habitCreateFragment,
-                        bundleOf("Habit" to idHabit)
+                        bundleOf(HABIT_KEY_BUNDLE_DATA to idHabit)
                     )
                 }
                 HABIT_REMOVE_CODE -> {

@@ -16,7 +16,7 @@ interface IRepository {
 
     suspend fun editHabit(habit: Habit): ApiResponse<HabitUid>
 
-    suspend fun removeHabit(habit: Habit)  : ApiResponse<Unit>
+    suspend fun removeHabit(habit: Habit) : ApiResponse<Unit>
 
     suspend fun doneHabit(habit: Habit): ApiResponse<Unit>
 }

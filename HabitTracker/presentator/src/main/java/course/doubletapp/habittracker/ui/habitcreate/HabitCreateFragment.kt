@@ -32,6 +32,10 @@ class HabitCreateFragment: Fragment() {
     private var dateHabit: Int = (Date().time / 1000).toInt()
     private var doneDateHabit: List<Int> = listOf()
 
+    companion object {
+        private const val HABIT_KEY_BUNDLE_DATA = "Habit"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,7 +45,6 @@ class HabitCreateFragment: Fragment() {
         binding = FragmentHabitCreateBinding.inflate(inflater)
 
         if (isAdded) {
-//            createViewModel()
             createColorPicker()
             setObserver()
             setSpinnerAdapter()
@@ -49,7 +52,7 @@ class HabitCreateFragment: Fragment() {
 
             if (arguments != null) {
                 val habitEdit: Habit = habitCreateViewModel
-                    .getHabitByName(requireArguments().getString("Habit")!!)!!
+                    .getHabitByName(requireArguments().getString(HABIT_KEY_BUNDLE_DATA)!!)!!
                 loadHabitField(habitEdit)
             }
 
@@ -65,13 +68,6 @@ class HabitCreateFragment: Fragment() {
             .inject(this)
 
         super.onAttach(context)
-    }
-
-    private fun createViewModel(){
-        val appComponent = (requireActivity().application as HabitTrackerApplication).appComponent
-
-        val habitUseCase = appComponent.getHabitUseCase()
-        habitCreateViewModel = HabitCreateViewModel(habitUseCase)
     }
 
     private fun loadHabitField(habit: Habit){

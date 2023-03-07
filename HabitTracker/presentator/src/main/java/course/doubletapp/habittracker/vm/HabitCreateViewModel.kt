@@ -1,14 +1,11 @@
 package course.doubletapp.habittracker.vm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import course.doubletapp.habittracker.domain.entity.Habit
 import course.doubletapp.habittracker.domain.entity.PriorityHabit
 import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.domain.uc.HabitsUseCase
-import java.util.Date
 import javax.inject.Inject
-import kotlin.random.Random
 
 class HabitCreateViewModel @Inject constructor(
     private val useCase: HabitsUseCase

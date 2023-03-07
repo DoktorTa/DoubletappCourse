@@ -3,11 +3,11 @@ package course.doubletapp.habittracker.vm
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.domain.entity.Habit
 import course.doubletapp.habittracker.domain.entity.PriorityHabit
 import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.domain.uc.HabitsUseCase
-import javax.inject.Inject
 
 class HabitListViewModel(
     val useCase: HabitsUseCase,

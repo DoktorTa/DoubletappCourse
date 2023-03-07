@@ -84,7 +84,6 @@ class HabitServerRepository @Inject constructor(
 
     override suspend fun doneHabit(habit: Habit): ApiResponse<Unit> {
         return try {
-            Log.d("HABITSERVERREPOSITORY", "111111111111111111111 ${habit.id}, ${habit.doneDates.last()}")
             retryRequest { habitServerAPI.doneHabit(HabitDoneServer(habit.doneDates.last(), habit.id)) }
             habitsDao.editHabit(HabitEntity.fromHabit(habit))
             ApiResponse.Success(data = Unit)

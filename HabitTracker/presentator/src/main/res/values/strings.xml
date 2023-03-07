@@ -44,5 +44,12 @@
     <string name="header_bottom_sheet_filter">Filters</string>
     <string name="hint_name_habit_filter">Filter by name habit</string>
     <string name="hint_description_habit_filter">Filter by description habit</string>
-
+    <string name="priority_type_habit_all">ALL</string>
+    
+<!--  HabitListViewModel  -->
+    <string name="more_bad">Больше нельзя.</string>
+    <string name="more_good">Братан, хорош, давай, давай, вперёд! Привычка в кайф, можно еще! Вообще красавчик! Можно вот этого вот почаще?</string>
+    <string name="again_bad">Можно сделать еще %1$s раз.</string>
+    <string name="again_good">Еще раз %1$s надо.</string>
+    
 </resources>

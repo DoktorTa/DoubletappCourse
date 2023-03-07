@@ -36,23 +36,3 @@ interface AppComponent {
 
     fun habitListSubComponent(): HabitListFactorySubComponent.Builder
 }
-
-@Subcomponent
-interface HabitCreateSubComponent {
-    @Subcomponent.Builder
-    interface Builder{
-        fun build(): HabitCreateSubComponent
-    }
-
-    fun inject(habitCreateFragment: HabitCreateFragment)
-}
-
-@Subcomponent
-interface HabitListFactorySubComponent {
-    @Subcomponent.Builder
-    interface Builder{
-        fun build(): HabitListFactorySubComponent
-    }
-
-    fun inject(habitListFragment: HabitListFragment)
-}

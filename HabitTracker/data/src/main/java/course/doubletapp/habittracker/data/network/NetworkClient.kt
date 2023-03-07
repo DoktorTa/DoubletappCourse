@@ -19,8 +19,6 @@ class NetworkClient {
                 .addInterceptor(AuthInterceptor())
                 .addInterceptor(logInterceptor)
                 .build()
-
-//            return client
         }
 
         fun getHabitServerAPI(client: OkHttpClient): HabitServerAPI{
@@ -32,7 +30,6 @@ class NetworkClient {
 
             return retrofit.create(HabitServerAPI::class.java)
         }
-
     }
 }
 
