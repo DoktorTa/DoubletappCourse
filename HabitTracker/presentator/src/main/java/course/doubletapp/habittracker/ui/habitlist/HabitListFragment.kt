@@ -1,6 +1,7 @@
 package course.doubletapp.habittracker.ui.habitlist
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,12 +21,14 @@ import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentListHabitBinding
 import course.doubletapp.habittracker.vm.HabitListViewModel
 import course.doubletapp.habittracker.vm.HabitListViewModelFactory
+import javax.inject.Inject
 
 class HabitListFragment: Fragment(), HabitClickListener {
 
     private lateinit var binding: FragmentListHabitBinding
     private lateinit var adapter: HabitListRecyclerAdapter
     private lateinit var habitListViewModel: HabitListViewModel
+    @Inject lateinit var habitListViewModelFactory: HabitListViewModelFactory
 
     companion object {
         private const val HABIT_TYPE = "TYPE"
@@ -60,11 +63,28 @@ class HabitListFragment: Fragment(), HabitClickListener {
         return binding.root
     }
 
-    private fun createViewModel(typeHabit: TypeHabit){
-        val appComponent = (requireActivity().application as HabitTrackerApplication).appComponent
+    override fun onAttach(context: Context) {
+        (requireActivity().application as HabitTrackerApplication)
+            .appComponent
+            .habitListSubComponent()
+            .build()
+            .inject(this)
 
-        val habitUseCase = appComponent.getHabitUseCase()
-        habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
+        super.onAttach(context)
+    }
+
+    private fun createViewModel(typeHabit: TypeHabit){
+//        val appComponent = (requireActivity().application as HabitTrackerApplication).appComponent
+//
+//        val habitUseCase = appComponent.getHabitUseCase()
+//
+//        (requireActivity().application as HabitTrackerApplication)
+//            .appComponent
+//            .habitListSubComponent()
+//            .build()
+//            .inject(this)
+
+        habitListViewModel = ViewModelProvider(requireActivity(), habitListViewModelFactory)[
                 typeHabit.toString(), HabitListViewModel::class.java
         ]
         habitListViewModel.resetFilter(typeHabit)

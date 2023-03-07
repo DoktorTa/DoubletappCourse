@@ -7,6 +7,7 @@ import course.doubletapp.habittracker.domain.entity.Habit
 import course.doubletapp.habittracker.domain.entity.PriorityHabit
 import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.domain.uc.HabitsUseCase
+import javax.inject.Inject
 
 class HabitListViewModel(
     val useCase: HabitsUseCase,

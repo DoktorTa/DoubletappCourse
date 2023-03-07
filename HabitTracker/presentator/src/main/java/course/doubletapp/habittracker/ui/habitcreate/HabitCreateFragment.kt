@@ -1,5 +1,6 @@
 package course.doubletapp.habittracker.ui.habitcreate
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +18,14 @@ import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentHabitCreateBinding
 import course.doubletapp.habittracker.vm.HabitCreateViewModel
 import java.util.*
-import kotlin.random.Random
+import javax.inject.Inject
 
 class HabitCreateFragment: Fragment() {
 
     private lateinit var binding: FragmentHabitCreateBinding
     private lateinit var colorPicker: ColorPicker
-    private lateinit var habitCreateViewModel: HabitCreateViewModel
+
+    @Inject lateinit var habitCreateViewModel: HabitCreateViewModel
 
     private var typeHabit: String? = null
     private var idHabit: String = ""
@@ -39,7 +41,7 @@ class HabitCreateFragment: Fragment() {
         binding = FragmentHabitCreateBinding.inflate(inflater)
 
         if (isAdded) {
-            createViewModel()
+//            createViewModel()
             createColorPicker()
             setObserver()
             setSpinnerAdapter()
@@ -53,6 +55,16 @@ class HabitCreateFragment: Fragment() {
 
         }
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        (requireActivity().application as HabitTrackerApplication)
+            .appComponent
+            .habitCreateSubComponent()
+            .build()
+            .inject(this)
+
+        super.onAttach(context)
     }
 
     private fun createViewModel(){

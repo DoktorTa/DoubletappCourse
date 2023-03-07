@@ -87,7 +87,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:inputType="phone"
-                tools:ignore="RelativeOverlap" />
+                tools:ignore="RelativeOverlap"
+                style="@style/StandardHabitText"/>
         </RelativeLayout>
 
         <View
@@ -120,7 +121,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints=""
                 android:inputType="phone"
-                tools:ignore="RelativeOverlap" />
+                tools:ignore="RelativeOverlap"
+                style="@style/StandardHabitText"/>
         </RelativeLayout>
 
         <View
@@ -184,7 +186,7 @@
                 android:dropDownSelector="@drawable/ic_spinner_arrow_24"
                 android:layout_marginEnd="@dimen/text_left_margin"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </RelativeLayout>
     </LinearLayout>
 

@@ -7,9 +7,10 @@ import course.doubletapp.habittracker.domain.entity.PriorityHabit
 import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.domain.uc.HabitsUseCase
 import java.util.Date
+import javax.inject.Inject
 import kotlin.random.Random
 
-class HabitCreateViewModel(
+class HabitCreateViewModel @Inject constructor(
     private val useCase: HabitsUseCase
 ): ViewModel() {
 
