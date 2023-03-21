@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/filter_bottom_sheet_background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AboutBottomSheet"
+        android:text="@string/header_bottom_sheet_filter"
+        android:layout_margin="@dimen/text_left_margin"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/filterByNameHabit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextFilterNameHabit"
+        android:layout_marginStart="@dimen/text_left_margin"
+        android:layout_marginEnd="@dimen/text_left_margin"
+        android:hint="@string/hint_name_habit_filter"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/filterByDescriptionHabit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextFilterDescriptionHabit"
+        android:layout_marginStart="@dimen/text_left_margin"
+        android:layout_marginEnd="@dimen/text_left_margin"
+        android:hint="@string/hint_description_habit_filter"
+        android:inputType="text"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/filterByPriorityHabit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+
+            android:layout_marginStart="@dimen/text_left_margin"
+            android:layout_marginTop="@dimen/text_left_margin"
+            android:layout_marginEnd="@dimen/text_left_margin"
+            android:layout_marginBottom="@dimen/text_left_margin"
+            android:backgroundTint="?attr/colorPrimary"
+            android:dropDownSelector="@drawable/ic_spinner_arrow_24" />
+
+        <Button
+            android:id="@+id/resetButton"
+            android:text="RESET"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</LinearLayout>

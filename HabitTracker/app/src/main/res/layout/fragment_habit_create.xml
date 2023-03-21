@@ -1,228 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
 
-    android:layout_height="match_parent">
+    android:orientation="vertical">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-<androidx.constraintlayout.widget.ConstraintLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/name_and_description_tile_size"
-        android:layout_margin="@dimen/tile_margin"
-        android:layout_marginStart="@dimen/tile_margin"
-        android:layout_marginTop="@dimen/tile_margin"
-        android:background="?attr/colorSecondary"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/nameHabit"
-            android:layout_margin="@dimen/text_margin"
-            style="@style/NameHabitText"
+        <androidx.constraintlayout.widget.ConstraintLayout
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_habit" />
-
-        <EditText
-            android:id="@+id/descriptionHabit"
-            android:layout_marginStart="@dimen/text_margin"
-            android:layout_marginBottom="@dimen/text_margin"
-            style="@style/StandardHabitText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/description" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/spinner_layout"
-
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:background="?attr/colorSecondary"
-        android:layout_margin="@dimen/tile_margin"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <Spinner
-            android:id="@+id/spinnerPriorityHabit"
-            style="@style/StandardHabitTextRevers"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:dropDownSelector="@drawable/ic_spinner_arrow_24"
-
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/text_margin"/>
-
-        <RadioGroup
-            android:id="@+id/typeHabit"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/text_margin"
-            android:orientation="horizontal"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true">
-
-        </RadioGroup>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:layout_margin="@dimen/tile_margin"
-
-        android:background="?attr/colorSecondary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_layout">
-
-        <EditText
-            android:id="@+id/periodHabit"
-            style="@style/StandardHabitValue"
-            android:inputType="number"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/text_margin"
-            android:hint="@string/period"
-            android:background="?attr/colorSecondary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:inputType="number"
-            android:id="@+id/countHabit"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            style="@style/StandardHabitValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/text_margin"
-            android:background="?attr/colorSecondary"
-            android:hint="@string/count"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/topLineColorSelector"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:background="?attr/colorSecondary"
-
-        android:layout_margin="@dimen/tile_margin"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-
-        <HorizontalScrollView
-            android:id="@+id/colorPicker"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/color_picker_margin"
-            android:layout_marginTop="@dimen/color_picker_margin"
-            android:layout_marginEnd="@dimen/color_picker_margin"
-            android:layout_marginBottom="@dimen/color_picker_margin"
-            >
+            android:layout_height="match_parent">
 
-            <RadioGroup
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp"
-                android:id="@+id/colorSquare"
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/name_and_description_tile_size"
+                android:layout_margin="@dimen/tile_margin"
+                android:layout_marginStart="@dimen/tile_margin"
+                android:layout_marginTop="@dimen/tile_margin"
+                android:background="?attr/colorSecondary"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/nameHabit"
+                    style="@style/NameHabitText"
+                    android:layout_width="wrap_content"
+                    android:saveEnabled="false"
+
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:hint="@string/name_habit" />
+
+                <EditText
+                    android:id="@+id/descriptionHabit"
+                    style="@style/StandardHabitText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:saveEnabled="true"
+                    android:layout_marginStart="@dimen/text_margin"
+                    android:layout_marginBottom="@dimen/text_margin"
+                    android:hint="@string/description" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/spinner_layout"
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tile_size"
+                android:layout_margin="@dimen/tile_margin"
+                android:background="?attr/colorSecondary"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+                <Spinner
+                    android:id="@+id/spinnerPriorityHabit"
+                    style="@style/StandardHabitTextRevers"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="0dp"
+                    android:layout_marginStart="@dimen/text_margin"
+
+                    android:backgroundTint="?attr/colorPrimary"
+                    android:dropDownSelector="@drawable/ic_spinner_arrow_24" />
+
+                <RadioGroup
+                    android:id="@+id/typeHabit"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/text_margin"
+                    android:orientation="horizontal">
+
+                </RadioGroup>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tile_size"
+                android:layout_margin="@dimen/tile_margin"
+
+                android:background="?attr/colorSecondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_layout">
+
+                <EditText
+                    android:id="@+id/periodHabit"
+                    style="@style/StandardHabitValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/text_margin"
+                    android:background="?attr/colorSecondary"
+                    android:hint="@string/period"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/countHabit"
+                    style="@style/StandardHabitValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/text_margin"
+                    android:background="?attr/colorSecondary"
+                    android:hint="@string/count"
+                    android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/topLineColorSelector"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tile_size"
+                android:layout_margin="@dimen/tile_margin"
+
+                android:background="?attr/colorSecondary"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+
+                <HorizontalScrollView
+                    android:id="@+id/colorPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/color_picker_margin"
+                    android:layout_marginTop="@dimen/color_picker_margin"
+                    android:layout_marginEnd="@dimen/color_picker_margin"
+                    android:layout_marginBottom="@dimen/color_picker_margin">
+
+                    <RadioGroup
+                        android:id="@+id/colorSquare"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp" />
+                </HorizontalScrollView>
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/colorSelected"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/tile_size"
+                android:layout_marginStart="@dimen/tile_margin"
+
+                android:layout_marginEnd="@dimen/tile_margin"
+                android:background="?attr/colorSecondary"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topLineColorSelector">
+
+                <View
+                    android:id="@+id/colorSelectedSquare"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/color_picker_margin"
+                    android:layout_marginEnd="@dimen/color_picker_margin"
+                    android:layout_marginBottom="@dimen/color_picker_margin" />
+            </RelativeLayout>
+
+            <View
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" />
-        </HorizontalScrollView>
+                android:layout_height="@dimen/tile_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/colorSelected" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/colorSelected"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tile_size"
-        android:background="?attr/colorSecondary"
-
-        android:layout_marginStart="@dimen/tile_margin"
-        android:layout_marginEnd="@dimen/tile_margin"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topLineColorSelector">
-
-        <View
-            android:id="@+id/colorSelectedSquare"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/color_picker_margin"
-            android:layout_marginEnd="@dimen/color_picker_margin"
-            android:layout_marginBottom="@dimen/color_picker_margin" />
-    </RelativeLayout>
-
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/tile_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorSelected" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/tile_size"
-        android:background="?attr/colorSecondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="?attr/colorSecondary"
+        android:orientation="horizontal"
         android:weightSum="2"
-        >
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/canselButton"
+            style="@style/StandardHabitText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/cansel"
-            style="@style/StandardHabitText"
+            android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:layout_weight="1"/>
+            android:text="@string/cansel" />
 
         <Button
             android:id="@+id/okButton"
+            style="@style/StandardHabitText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/ok"
             android:layout_weight="1"
-            style="@style/StandardHabitText"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:text="@string/ok" />
     </LinearLayout>
 
-    </RelativeLayout>
+</RelativeLayout>

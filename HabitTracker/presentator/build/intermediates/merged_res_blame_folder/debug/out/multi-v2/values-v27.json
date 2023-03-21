@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "course.doubletapp.habittracker.presentator-mergeDebugResources-5:/values-v27/values-v27.xml",
+            "map": [
+                {
+                    "source": "A:\\ProgrammingLanguages\\InDeveloping\\Kotlin\\DoubletappCourse\\HabitTracker\\presentator\\src\\main\\res\\values-v27\\themes.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "59",
+                        "endLines": "18",
+                        "endColumns": "12",
+                        "endOffsets": "967"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "17",
+                        "endColumns": "12",
+                        "endOffsets": "827"
+                    }
+                }
+            ]
+        }
+    ]
+}

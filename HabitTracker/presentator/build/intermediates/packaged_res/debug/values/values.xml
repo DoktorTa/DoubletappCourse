@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="dark_grey">#ff2c2c2c</color>
+    <color name="light_grey">#ffcccccc</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="app_name_bottom_margin">10dp</dimen>
+    <dimen name="app_name_left_margin">20dp</dimen>
+    <dimen name="big_tile_size">144dp</dimen>
+    <dimen name="color_picker_margin">1dp</dimen>
+    <dimen name="color_picker_tile_size">220dp</dimen>
+    <dimen name="separation_line_height">1dp</dimen>
+    <dimen name="separation_line_margin">5dp</dimen>
+    <dimen name="text_left_margin">15dp</dimen>
+    <dimen name="text_margin">5dp</dimen>
+    <dimen name="tile_margin">5dp</dimen>
+    <dimen name="tile_radius_corner">15dip</dimen>
+    <dimen name="tile_size">72dp</dimen>
+    <dimen name="value_tile_size">291dp</dimen>
+    <integer name="max_len_description_habit">256</integer>
+    <integer name="max_len_name_habit">32</integer>
+    <integer name="max_len_value_habit">5</integer>
+    <string name="app_name">HabitTracker</string>
+    <string name="badText">BAD</string>
+    <string name="cansel">CANSEL</string>
+    <string name="close_drawer">Close</string>
+    <string name="color_picker_stub">HSV: \nHEX: \nINT: </string>
+    <string name="count_text">Count day</string>
+    <string name="description">Description</string>
+    <string name="goodText">GOOD</string>
+    <string name="habit_menu_complete">Complete</string>
+    <string name="habit_menu_edit">Edit</string>
+    <string name="habit_menu_remove">Remove</string>
+    <string name="habit_remove_dialog_cansel">CANSEL</string>
+    <string name="habit_remove_dialog_msg">Want to remove a habit?</string>
+    <string name="habit_remove_dialog_ok">OK</string>
+    <string name="hardText">HARD</string>
+    <string name="header_bottom_sheet_filter">Filters</string>
+    <string name="hint_description_habit_filter">Filter by description habit</string>
+    <string name="hint_name_habit_filter">Filter by name habit</string>
+    <string name="infoColor">INT: %1$s \nHEX: 0x%2$s \nHSV %3$s</string>
+    <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>
+    <string name="lowText">LOW</string>
+    <string name="mediumText">MEDIUM</string>
+    <string name="name_habit">Name habit</string>
+    <string name="ok">OK</string>
+    <string name="open_drawer">Open</string>
+    <string name="period_text">Recurrence period</string>
+    <string name="priority_text">Priority</string>
+    <string name="type_text">Type</string>
+    <style name="AboutBottomSheet">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="CustomRadioButton" parent="StandardHabitText">
+        <item name="buttonTint">?attr/colorPrimary</item>
+    </style>
+    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="background">@android:color/white</item>
+    </style>
+    <style name="DescriptionAppText">
+        <item name="android:textColor">?attr/colorSecondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="NameAppText">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="NameHabitText">
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:maxLength">@integer/max_len_name_habit</item>
+    </style>
+    <style name="StandardHabitText">
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLength">@integer/max_len_description_habit</item>
+    </style>
+    <style name="StandardHabitTextRevers" parent="StandardHabitText">
+        <item name="android:textColorHint">?attr/colorSecondary</item>
+        <item name="android:textColor">?attr/colorSecondary</item>
+    </style>
+    <style name="StandardHabitValue" parent="StandardHabitText">
+        <item name="android:maxLength">@integer/max_len_value_habit</item>
+    </style>
+    <style name="TextFilterDescriptionHabit" parent="TextFilterNameHabit">
+        <item name="android:maxLength">@integer/max_len_description_habit</item>
+    </style>
+    <style name="TextFilterNameHabit">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textColorHint">?attr/colorPrimary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:maxLength">@integer/max_len_name_habit</item>
+    </style>
+    <style name="Theme.HabitTracker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/light_grey</item>
+        <item name="colorOnPrimary">@color/black</item>
+        
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/dark_grey</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        <item name="android:navigationBarColor">?attr/colorSecondary</item>
+
+    </style>
+    <style name="ThemeHabitCreate" parent="Theme.HabitTracker">
+        <item name="android:statusBarColor">?attr/colorSecondary</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

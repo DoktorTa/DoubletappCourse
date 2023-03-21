@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.view.View
+import android.widget.GridLayout
 import android.widget.LinearLayout
 import android.widget.RadioGroup
 import androidx.appcompat.widget.AppCompatRadioButton
@@ -45,21 +46,21 @@ class ColorHabitPicker(
         }
     }
 
-    private fun generateRadioButton(color: String): AppCompatRadioButton{
-        val radioButton = AppCompatRadioButton(context)
-        radioButton.setBackgroundResource(R.drawable.radio_selecter)
-        radioButton.buttonDrawable = null
-        radioButton.layoutParams = getLayoutParams()
+    private fun generateRadioButton(color: String): AppCompatRadioButton =
+        AppCompatRadioButton(context).apply{
 
-        radioButton.text = color
-        radioButton.textSize = 1F
-        radioButton.setTextColor(android.R.color.transparent.toInt())
+            setBackgroundResource(R.drawable.radio_selecter)
+            buttonDrawable = null
+//            layoutParams = GridLayoutL
 
-        radioButton.setOnClickListener{
+            text = color
+            textSize = 1F
+            setTextColor(android.R.color.transparent.toInt())
+
+            setOnClickListener{
                 changeColorSelectedSquare(color.toInt())
+            }
         }
-        return radioButton
-    }
 
     // TODO: Переделать с хардкор кода.
     private fun getLayoutParams(): LinearLayout.LayoutParams{
