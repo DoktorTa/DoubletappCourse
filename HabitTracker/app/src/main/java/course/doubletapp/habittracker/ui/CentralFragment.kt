@@ -1,7 +1,6 @@
 package course.doubletapp.habittracker.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +11,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentCentralBinding
-import course.doubletapp.habittracker.vm.HabitListViewModel
 
 class CentralFragment: Fragment() {
 
     private lateinit var binding: FragmentCentralBinding
     private lateinit var adapterViewPager: ViewPagerAdapter
-    private lateinit var habitListViewModel: HabitListViewModel
-//    private lateinit var filterBottomSheet: FilterBottomSheet
 
     private val types: Array<String> = TypeHabit.values().map{it.toString()}.toTypedArray()
 

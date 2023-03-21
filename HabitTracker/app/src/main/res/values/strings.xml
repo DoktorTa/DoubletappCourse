@@ -2,6 +2,7 @@
 
 <!--  HabitAppInfo  -->
     <string name="app_name">HabitTracker</string>
+    <string name="name_creator">Created by Daniil</string>
 
 <!--  DrawerLayout  -->
     <string name="open_drawer">Open</string>
@@ -43,5 +44,11 @@
     <string name="header_bottom_sheet_filter">Search and filters</string>
     <string name="hint_name_habit_filter">Filter by name habit</string>
     <string name="hint_description_habit_filter">Filter by description habit</string>
+    <string name="name_button_reset">RESET</string>
+
+<!--  HabitItemDefault  -->
+    <string name="habit_name_default">Habit name</string>
+    <string name="habit_description_default">Description</string>
+    <string name="habit_info_default">[priority - low; type - good; count - 7; period - 1 day]</string>
 
 </resources>

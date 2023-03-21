@@ -2,7 +2,6 @@ package course.doubletapp.habittracker.ui.habitlist
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -17,7 +16,6 @@ import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.data.TypeHabit
 import course.doubletapp.habittracker.databinding.FragmentListHabitBinding
-import course.doubletapp.habittracker.vm.Filters
 import course.doubletapp.habittracker.vm.HabitListViewModel
 import course.doubletapp.habittracker.vm.HabitListViewModelFactory
 
@@ -29,6 +27,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
     companion object {
         private const val HABIT_TYPE = "TYPE"
+        private const val HABIT_NAME_KEY = "Habit"
 
         private const val HABIT_EDIT_CODE = 0
         private const val HABIT_REMOVE_CODE = 1
@@ -63,7 +62,6 @@ class HabitListFragment: Fragment(), HabitClickListener {
         habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
                 typeHabit.toString(), HabitListViewModel::class.java
         ]
-        Log.d("1111111111111111111111111111111", habitListViewModel.allHabits.value!!.toString())
         habitListViewModel.resetFilter(typeHabit)
     }
 
@@ -83,9 +81,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
 
     private fun setRecyclerAdapter(){
         val habitList = binding.habitListRecyclerView
-
         adapter = HabitListRecyclerAdapter(this)
-
         habitList.adapter = adapter
 
         val layoutManager = LinearLayoutManager(
@@ -106,7 +102,7 @@ class HabitListFragment: Fragment(), HabitClickListener {
                 HABIT_EDIT_CODE -> {
                     findNavController().navigate(
                         R.id.action_centralFragment_to_habitCreateFragment,
-                        bundleOf("Habit" to name)
+                        bundleOf(HABIT_NAME_KEY to name)
                     )
                 }
                 HABIT_REMOVE_CODE -> {

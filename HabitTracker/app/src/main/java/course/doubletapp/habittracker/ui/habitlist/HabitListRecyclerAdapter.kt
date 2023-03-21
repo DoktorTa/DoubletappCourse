@@ -46,11 +46,11 @@ class HabitListRecyclerAdapter(
     companion object {
         private val HABIT_COMPARATOR = object : DiffUtil.ItemCallback<Habit>() {
             override fun areItemsTheSame(oldItem: Habit, newItem: Habit): Boolean {
-                return oldItem === newItem
+                return oldItem.name === newItem.name
             }
 
             override fun areContentsTheSame(oldItem: Habit, newItem: Habit): Boolean {
-                return oldItem.name == newItem.name
+                return oldItem == newItem
             }
         }
     }

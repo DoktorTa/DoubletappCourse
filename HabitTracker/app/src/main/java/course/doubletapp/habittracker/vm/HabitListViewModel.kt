@@ -1,9 +1,7 @@
 package course.doubletapp.habittracker.vm
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import course.doubletapp.habittracker.HabitTrackerApplication
 import course.doubletapp.habittracker.data.Habit
 import course.doubletapp.habittracker.data.PriorityHabit
 import course.doubletapp.habittracker.data.TypeHabit
@@ -11,13 +9,16 @@ import course.doubletapp.habittracker.uc.HabitsUseCase
 
 class HabitListViewModel(
     val useCase: HabitsUseCase,
-//    private val typeHabitsInPage: TypeHabit
 ): ViewModel() {
 
     private var typeHabitsInPage: TypeHabit? = null
     var allHabits: MutableLiveData<MutableSet<Habit>> = useCase.habits
-//    var nowFilters: Filters = Filters(null, null, typeHabitsInPage, null)
     val nowFilters: MutableLiveData<Filters> = MutableLiveData(Filters(null, null, null, null))
+
+
+    companion object {
+        private const val EMPTY_LINE = ""
+    }
 
 
     fun applyFilters(filters: Filters, filteredObject: MutableSet<Habit> = allHabits.value!!): MutableSet<Habit>{
@@ -45,7 +46,7 @@ class HabitListViewModel(
     fun searchByName(name: String){
         val f = nowFilters.value!!
 
-        if (name != "") {
+        if (name != EMPTY_LINE) {
             f.name = name
         } else {
             f.name = null
@@ -57,7 +58,7 @@ class HabitListViewModel(
     fun searchByDescription(description: String){
         val f = nowFilters.value!!
 
-        if (description != "") {
+        if (description != EMPTY_LINE) {
             f.description = description
         } else {
             f.description = null

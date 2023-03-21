@@ -23,6 +23,10 @@ class HabitCreateFragment: Fragment() {
     private lateinit var colorPicker: ColorPicker
     private lateinit var habitCreateViewModel: HabitCreateViewModel
 
+    companion object {
+        private const val HABIT_NAME_KEY = "Habit"
+    }
+
     private var typeHabit: String? = null
 
     override fun onCreateView(
@@ -42,7 +46,7 @@ class HabitCreateFragment: Fragment() {
 
             if (arguments != null) {
                 val habitEdit: Habit = habitCreateViewModel
-                    .getHabitByName(requireArguments().getString("Habit")!!)!!
+                    .getHabitByName(requireArguments().getString(HABIT_NAME_KEY)!!)!!
                 loadHabitField(habitEdit)
             }
 

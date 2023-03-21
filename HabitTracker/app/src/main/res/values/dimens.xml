@@ -17,5 +17,15 @@
     <dimen name="tile_margin">5dp</dimen>
     <dimen name="text_margin">5dp</dimen>
     <dimen name="color_picker_margin">1dp</dimen>
-    
+
+<!--  Fragment FilterBottomSheet  -->
+    <dimen name="bottom_sheet_separation_line_height">1dp</dimen>
+
+<!--  HabitItem  -->
+    <dimen name="habit_item_text_left_margin">15dp</dimen>
+    <dimen name="habit_item_margin">5dp</dimen>
+    <dimen name="habit_item_color_size">15dp</dimen>
+    <dimen name="habit_item_color_margin">2dp</dimen>
+
+
 </resources>

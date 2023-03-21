@@ -4,14 +4,11 @@ import android.R
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import course.doubletapp.habittracker.HabitTrackerApplication
@@ -27,6 +24,12 @@ class FilterBottomSheet(): Fragment() {
     private lateinit var binding: FragmentFilterBottomSheetBinding
     private lateinit var habitListViewModel: HabitListViewModel
 
+    companion object {
+        private val START_PAGE_TYPE_HABIT = TypeHabit.GOOD
+        // Необходим чтобы привычки не фильтровались по приоритету сразу, так сказать пустая позиция.
+        private const val SPECIAL_TYPE_FOR_PRIORITY_ADAPTER = "ALL"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,7 +39,7 @@ class FilterBottomSheet(): Fragment() {
 
         if (isAdded) {
             setSpinnerAdapter()
-            setHabitListViewModel(TypeHabit.GOOD)
+            setHabitListViewModel(START_PAGE_TYPE_HABIT)
             setObserver()
         }
 
@@ -68,7 +71,7 @@ class FilterBottomSheet(): Fragment() {
     private fun setSpinnerAdapter(){
 
         val priorityVariant: MutableList<String> = PriorityHabit.values().map{it.toString()}.toMutableList()
-        priorityVariant.add(0, "ALL")
+        priorityVariant.add(0, SPECIAL_TYPE_FOR_PRIORITY_ADAPTER)
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(),
             R.layout.simple_spinner_item,
@@ -90,11 +93,14 @@ class FilterBottomSheet(): Fragment() {
                 position: Int,
                 id: Long
             ) {
-                if (binding.filterByPriorityHabit.selectedItem.toString().uppercase() != "ALL"){
+                if (binding.filterByPriorityHabit.selectedItem.toString().uppercase()
+                    != SPECIAL_TYPE_FOR_PRIORITY_ADAPTER){
+
                     val priorityFilter = PriorityHabit.valueOf(
                         binding.filterByPriorityHabit.selectedItem.toString().uppercase()
                     )
                     habitListViewModel.searchByPriority(priorityFilter)
+
                 } else {
                     habitListViewModel.searchByPriority(null)
                 }

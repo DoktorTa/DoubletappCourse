@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/filter_bottom_sheet_background">
+    android:background="@drawable/filter_bottom_sheet_background"
+    android:orientation="vertical">
 
     <TextView
+        style="@style/AboutBottomSheet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/AboutBottomSheet"
-        android:text="@string/header_bottom_sheet_filter"
-        android:layout_margin="@dimen/text_left_margin"/>
+        android:layout_margin="@dimen/text_left_margin"
+        android:text="@string/header_bottom_sheet_filter" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?attr/colorPrimary"/>
+        android:layout_height="@dimen/bottom_sheet_separation_line_height"
+        android:background="?attr/colorPrimary" />
 
     <EditText
         android:id="@+id/filterByNameHabit"
+        style="@style/TextFilterNameHabit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextFilterNameHabit"
         android:layout_marginStart="@dimen/text_left_margin"
         android:layout_marginEnd="@dimen/text_left_margin"
         android:hint="@string/hint_name_habit_filter"
-        android:inputType="text"
-        />
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/filterByDescriptionHabit"
+        style="@style/TextFilterDescriptionHabit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/TextFilterDescriptionHabit"
         android:layout_marginStart="@dimen/text_left_margin"
         android:layout_marginEnd="@dimen/text_left_margin"
         android:hint="@string/hint_description_habit_filter"
-        android:inputType="text"
-        />
+        android:inputType="text" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -60,12 +57,12 @@
 
         <Button
             android:id="@+id/resetButton"
-            android:text="RESET"
-
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_margin="@dimen/text_margin"
+            android:text="@string/name_button_reset" />
     </RelativeLayout>
 </LinearLayout>

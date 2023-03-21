@@ -5,11 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import course.doubletapp.habittracker.uc.HabitsUseCase
 
 class HabitListViewModelFactory(
-    val useCase: HabitsUseCase,
-
+    val useCase: HabitsUseCase
 ): ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
 
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return HabitListViewModel(useCase) as T
     }
 }

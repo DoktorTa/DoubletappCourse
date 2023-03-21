@@ -19,8 +19,18 @@ class ColorPicker(
     private val aboutColorText: View
 ) {
     var selectedColor: Int? = null
-    private val colors: List<Int> = (0 until 16).map{
-        Color.HSVToColor(floatArrayOf(360f / 16f * (it + 1) - 360f / 16f / 2f, 0.9f, 1f))
+
+    companion object {
+        private const val SATURATION = 0.9f
+        private const val BRIGHTNESS = 1f
+
+        private const val COUNT_SQUARE = 16
+    }
+    private val colors: List<Int> = (0 until COUNT_SQUARE).map{
+        Color.HSVToColor(floatArrayOf(
+            360f / COUNT_SQUARE * (it + 1) - 360f / COUNT_SQUARE / 2f,
+            SATURATION,
+            BRIGHTNESS))
     }
 
     init {
@@ -44,7 +54,7 @@ class ColorPicker(
     private fun generateGradientArray(): IntArray{
         return (0..360).step(60)
             .map { it.toFloat() }
-            .map { floatArrayOf(it, 0.9f, 1f) }
+            .map { floatArrayOf(it, SATURATION, BRIGHTNESS) }
             .map { Color.HSVToColor(it) }
             .toIntArray()
     }
