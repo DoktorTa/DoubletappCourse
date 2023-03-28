@@ -2,7 +2,8 @@
 
 <!--  HabitAppInfo  -->
     <string name="app_name">HabitTracker</string>
-    <string name="name_creator">Created by Daniil</string>
+    <string name="menu_habit_name">Habit</string>
+    <string name="menu_info_app">Info</string>
 
 <!--  DrawerLayout  -->
     <string name="open_drawer">Open</string>

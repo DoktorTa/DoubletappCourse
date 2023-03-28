@@ -2,6 +2,12 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/name_creator"/>
+    <item
+        android:id="@+id/navigation_habits"
+        android:title="@string/menu_habit_name"/>
+
+    <item
+        android:id="@+id/navigation_info_fragment"
+        android:title="@string/menu_info_app" />
 
 </menu>
