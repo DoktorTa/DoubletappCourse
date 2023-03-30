@@ -18,22 +18,15 @@ import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.databinding.ActivityCentralBinding
 
 
-class CentralActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class CentralActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityCentralBinding
-//    private lateinit var appBar: ActionBarDrawerToggle
-
     private lateinit var appBarConfiguration: AppBarConfiguration
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCentralBinding.inflate(layoutInflater)
-
-//        appBar = ActionBarDrawerToggle(
-//            this, binding.drawerLayout, R.string.open_drawer, R.string.close_drawer)
-//
-//        binding.drawerLayout.addDrawerListener(appBar)
 
         val havHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -54,17 +47,4 @@ class CentralActivity: AppCompatActivity(), NavigationView.OnNavigationItemSelec
         return navController.navigateUp(appBarConfiguration) ||
                 super.onSupportNavigateUp()
     }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        Log.d("ACTIVITY", "${id}, ${R.id.navigation_info_fragment}")
-        if (id == R.id.navigation_info_fragment){
-            findNavController(R.id.nav_host_fragment).navigate(R.id.infoFragment)
-        } else {
-            findNavController(R.id.nav_host_fragment).navigate(R.id.CentralFragment)
-        }
-        binding.drawerLayout.closeDrawer(GravityCompat.START)
-        return true
-    }
-
 }

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.os.Build
+import android.util.Log
+import course.doubletapp.habittracker.R
 import course.doubletapp.habittracker.databinding.FragmentInfoBinding
 
 class InfoFragment: Fragment() {
@@ -22,20 +24,22 @@ class InfoFragment: Fragment() {
         return binding.root
     }
 
-
     private fun getAllInfoForUser(): String{
-        return "User: ${Build.USER}\n" +
-                "Id: ${Build.ID}\n" +
-                "Board: ${Build.BOARD}\n" +
-                "Brand: ${Build.BRAND}\n" +
-                "Device: ${Build.DEVICE}\n" +
-                "Bootloader: ${Build.BOOTLOADER}\n" +
-                "Display: ${Build.DISPLAY}\n" +
-                "Fingerprint: ${Build.FINGERPRINT}\n" +
-                "Hardware: ${Build.HARDWARE}\n" +
-                "Host: ${Build.HOST}\n" +
-                "Manufacturer: ${Build.MANUFACTURER}\n" +
-                "Model: ${Build.MODEL}\n" +
-                "Product: ${Build.PRODUCT}\n"
+        return requireContext().getString(
+            R.string.info_app,
+            Build.USER,
+            Build.ID,
+            Build.BOARD,
+            Build.BRAND,
+            Build.DEVICE,
+            Build.BOOTLOADER,
+            Build.DISPLAY,
+            Build.FINGERPRINT,
+            Build.HARDWARE,
+            Build.HOST,
+            Build.MANUFACTURER,
+            Build.MODEL,
+            Build.PRODUCT
+        )
     }
 }

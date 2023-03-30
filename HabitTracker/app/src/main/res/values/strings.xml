@@ -52,4 +52,8 @@
     <string name="habit_description_default">Description</string>
     <string name="habit_info_default">[priority - low; type - good; count - 7; period - 1 day]</string>
 
+<!--  InfoFragment  -->
+    <string name="info_app">User: %1$s\nId: %2$s\nBoard: %3$s\nBrand: %4$s\nDevice: %5$s\nBootloader: %6$s\nDisplay: %7$s\nFingerprint: %8$s\nHardware: %9$s\nHost: %10$s\nManufacturer: %11$s\nModel: %12$s\nProduct: %13$s\nЯ не очень хочу выводить сюда информацию о приложении, ибо не совсем понимаю что именно хотят от меня увидеть, кроме номера версии, поэтому вывожу это)</string>
+
+
 </resources>

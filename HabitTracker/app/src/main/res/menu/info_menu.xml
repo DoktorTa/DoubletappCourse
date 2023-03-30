@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_habits"
+        android:id="@+id/CentralFragment"
         android:title="@string/menu_habit_name"/>
 
     <item
-        android:id="@+id/navigation_info_fragment"
+        android:id="@+id/infoFragment"
         android:title="@string/menu_info_app" />
 
 </menu>
