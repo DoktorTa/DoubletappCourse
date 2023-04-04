@@ -19,7 +19,7 @@ import course.doubletapp.habittracker.databinding.FragmentListHabitBinding
 import course.doubletapp.habittracker.vm.HabitListViewModel
 import course.doubletapp.habittracker.vm.HabitListViewModelFactory
 
-class HabitListFragment: Fragment(), HabitClickListener {
+class HabitListFragment : Fragment(), HabitClickListener {
 
     private lateinit var binding: FragmentListHabitBinding
     private lateinit var adapter: HabitListRecyclerAdapter
@@ -48,8 +48,9 @@ class HabitListFragment: Fragment(), HabitClickListener {
         binding = FragmentListHabitBinding.inflate(inflater)
 
         if (isAdded) {
-            val typeHabit = arguments?.get(HABIT_TYPE) as? TypeHabit
-            createViewModel(typeHabit!!)
+            (arguments?.get(HABIT_TYPE) as? TypeHabit)?.let { typeHabit ->
+                createViewModel(typeHabit)
+            }
             setRecyclerAdapter()
             setObservers()
         }
@@ -57,45 +58,55 @@ class HabitListFragment: Fragment(), HabitClickListener {
         return binding.root
     }
 
-    private fun createViewModel(typeHabit: TypeHabit){
+    private fun createViewModel(typeHabit: TypeHabit) {
         val habitUseCase = (requireActivity().application as HabitTrackerApplication).ticketUseCase
-        habitListViewModel = ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
-                typeHabit.toString(), HabitListViewModel::class.java
-        ]
+        habitListViewModel =
+            ViewModelProvider(requireActivity(), HabitListViewModelFactory(habitUseCase))[
+                    typeHabit.toString(), HabitListViewModel::class.java
+            ]
         habitListViewModel.resetFilter(typeHabit)
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
         habitListViewModel.allHabits.observe(viewLifecycleOwner) {
             adapter.submitList(listOf()) // Это фиксит очень странный баг
-            adapter.submitList(habitListViewModel
-                .applyFilters(habitListViewModel.nowFilters.value!!).toMutableList())
+            adapter.submitList(  // TODO: Переделать на let
+                habitListViewModel
+                    .applyFilters(habitListViewModel.nowFilters.value!!).toMutableList()
+            )
         }
 
-        habitListViewModel.nowFilters.observe(viewLifecycleOwner) {
+        habitListViewModel.nowFilters.observe(viewLifecycleOwner) { filters ->
             adapter.submitList(listOf())
-            adapter.submitList(habitListViewModel
-                .applyFilters(habitListViewModel.nowFilters.value!!).toMutableList())
+            adapter.submitList(
+                habitListViewModel
+                    .applyFilters(filters).toMutableList()
+            )
         }
     }
 
-    private fun setRecyclerAdapter(){
+    private fun setRecyclerAdapter() {
         val habitList = binding.habitListRecyclerView
         adapter = HabitListRecyclerAdapter(this)
         habitList.adapter = adapter
 
         val layoutManager = LinearLayoutManager(
-            requireContext(), LinearLayoutManager.VERTICAL, false)
+            requireContext(), LinearLayoutManager.VERTICAL, false
+        )
         habitList.layoutManager = layoutManager
     }
 
     override fun habitClickListener(view: View, name: String) {
         val popupMenu = PopupMenu(requireContext(), view)
 
-        popupMenu.menu.add(0, HABIT_EDIT_CODE, Menu.NONE,
-            requireContext().getString(R.string.habit_menu_edit))
-        popupMenu.menu.add(0, HABIT_REMOVE_CODE, Menu.NONE,
-            requireContext().getString(R.string.habit_menu_remove))
+        popupMenu.menu.add(
+            0, HABIT_EDIT_CODE, Menu.NONE,
+            requireContext().getString(R.string.habit_menu_edit)
+        )
+        popupMenu.menu.add(
+            0, HABIT_REMOVE_CODE, Menu.NONE,
+            requireContext().getString(R.string.habit_menu_remove)
+        )
 
         popupMenu.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -115,12 +126,16 @@ class HabitListFragment: Fragment(), HabitClickListener {
         popupMenu.show()
     }
 
-    private fun createRemoveDialog(name: String){
+    private fun createRemoveDialog(name: String) {
         val builder = AlertDialog.Builder(requireActivity())
         builder
             .setMessage(R.string.habit_remove_dialog_msg)
-            .setPositiveButton(R.string.habit_remove_dialog_ok) {_, _ -> habitListViewModel.removeHabit(name)}
-            .setNegativeButton(R.string.habit_remove_dialog_cansel) {dialog, _ -> dialog.cancel()}
+            .setPositiveButton(R.string.habit_remove_dialog_ok) { _, _ ->
+                habitListViewModel.removeHabit(
+                    name
+                )
+            }
+            .setNegativeButton(R.string.habit_remove_dialog_cansel) { dialog, _ -> dialog.cancel() }
         builder.create().show()
 
     }
