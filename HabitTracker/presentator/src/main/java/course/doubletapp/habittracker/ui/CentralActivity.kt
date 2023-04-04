@@ -2,29 +2,48 @@ package course.doubletapp.habittracker.ui
 
 import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
 import course.doubletapp.habittracker.R
+import androidx.navigation.ui.setupActionBarWithNavController
 import course.doubletapp.habittracker.databinding.ActivityCentralBinding
 import kotlinx.coroutines.launch
 
 class CentralActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityCentralBinding
-    private lateinit var appBar: ActionBarDrawerToggle
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCentralBinding.inflate(layoutInflater)
 
-        appBar = ActionBarDrawerToggle(
-            this, binding.drawerLayout, R.string.open_drawer, R.string.close_drawer)
-        binding.drawerLayout.addDrawerListener(appBar)
+        val havHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        val navController = havHostFragment.navController
+
+        appBarConfiguration = AppBarConfiguration(
+            navController.graph, binding.drawerLayout
+        )
+        binding.navView.setupWithNavController(navController)
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
         setContentView(binding.root)
 
         loadAvatarImage(this)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration) ||
+                super.onSupportNavigateUp()
     }
 
     private fun loadAvatarImage(activity: Activity){

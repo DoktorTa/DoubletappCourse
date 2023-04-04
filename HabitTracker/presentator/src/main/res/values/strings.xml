@@ -51,5 +51,15 @@
     <string name="more_good">Братан, хорош, давай, давай, вперёд! Привычка в кайф, можно еще! Вообще красавчик! Можно вот этого вот почаще?</string>
     <string name="again_bad">Можно сделать еще %1$s раз.</string>
     <string name="again_good">Еще раз %1$s надо.</string>
-    
+
+<!--  InfoFragment  -->
+    <string name="info_text">Пользователь с устройства %1$s открыл приложение.</string>
+
+<!--  InfoMenu  -->
+    <string name="menu_habit_name">Habit</string>
+    <string name="menu_info_app">Info</string>
+
+<!--  Other  -->
+    <string name="default_text">DEFAULT TEXT</string>
+
 </resources>

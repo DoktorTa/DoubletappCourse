@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/CentralFragment"
         android:name="course.doubletapp.habittracker.ui.CentralFragment"
-        android:label="HabitListFragment"
+        android:label="Habits"
         tools:layout="@layout/fragment_central">
         <action
             android:id="@+id/action_centralFragment_to_habitCreateFragment"
@@ -18,10 +18,18 @@
     <fragment
         android:id="@+id/habitCreateFragment"
         android:name="course.doubletapp.habittracker.ui.habitcreate.HabitCreateFragment"
-        android:label="HabitCreateFragment"
+        android:label="Habit Create"
         tools:layout="@layout/fragment_habit_create">
         <action
             android:id="@+id/action_habitCreateFragment_to_centralFragment"
             app:destination="@id/CentralFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/InfoFragment"
+        android:label="Info"
+        tools:layout="@layout/fragment_info"
+        android:name="course.doubletapp.habittracker.ui.information.InfoFragment">
+    </fragment>
+
 </navigation>
