@@ -18,43 +18,24 @@ class HabitsUseCase @Inject constructor(
 
     val habits: LiveData<List<Habit>> = repository.getAllHabit().asLiveData()
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun loadHabitFromServer(){
-        GlobalScope.launch(Dispatchers.IO){
-            val apiResponse = repository.loadHabitFromServer()
-            if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
-                Log.d("HabitServerRepository.loadHabitFromServer", "Error connection")
-            }
+    suspend fun loadHabitFromServer(){
+        val apiResponse = repository.loadHabitFromServer()
+        if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
+            Log.d("HabitServerRepository.loadHabitFromServer", "Error connection")
         }
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun createHabit(habit: Habit){
-        GlobalScope.launch(Dispatchers.IO){
-            val apiResponse = repository.createHabit(habit)
-            if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
-                Log.d("HabitServerRepository.createHabit", "Error connection")
-            }
+    suspend fun createHabit(habit: Habit){
+        val apiResponse = repository.createHabit(habit)
+        if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
+            Log.d("HabitServerRepository.createHabit", "Error connection")
         }
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun editHabit(newHabit: Habit){
-        GlobalScope.launch(Dispatchers.IO){
-            val apiResponse = repository.editHabit(newHabit)
-            if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
-                Log.d("HabitServerRepository.editHabit", "Error connection")
-            }
-        }
-    }
-
-    @OptIn(DelicateCoroutinesApi::class)
-    fun removeHabit(habit: Habit){
-        GlobalScope.launch(Dispatchers.IO){
-            val apiResponse = repository.removeHabit(habit)
-            if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
-                Log.d("HabitServerRepository.removeHabit", "Error connection")
-            }
+    suspend fun removeHabit(habit: Habit){
+        val apiResponse = repository.removeHabit(habit)
+        if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
+            Log.d("HabitServerRepository.removeHabit", "Error connection")
         }
     }
 
@@ -77,15 +58,12 @@ class HabitsUseCase @Inject constructor(
         return habit
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun completeHabit(habit: Habit){
+    suspend fun completeHabit(habit: Habit){
         val habitAfterUpdate = updateDoneDate(habit)
 
-        GlobalScope.launch(Dispatchers.IO){
-            val apiResponse = repository.doneHabit(habitAfterUpdate)
-            if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
-                Log.d("HabitServerRepository.removeHabit", "Error connection")
-            }
+        val apiResponse = repository.doneHabit(habitAfterUpdate)
+        if (apiResponse is course.doubletapp.habittracker.domain.ApiResponse.Error){
+            Log.d("HabitServerRepository.removeHabit", "Error connection")
         }
     }
 
