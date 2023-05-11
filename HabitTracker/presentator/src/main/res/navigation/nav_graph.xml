@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/CentralFragment">
+
+    <fragment
+        android:id="@+id/CentralFragment"
+        android:name="course.doubletapp.habittracker.ui.CentralFragment"
+        android:label="Habits"
+        tools:layout="@layout/fragment_central">
+        <action
+            android:id="@+id/action_centralFragment_to_habitCreateFragment"
+            app:destination="@id/habitCreateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/habitCreateFragment"
+        android:name="course.doubletapp.habittracker.ui.habitcreate.HabitCreateFragment"
+        android:label="Habit Create"
+        tools:layout="@layout/fragment_habit_create">
+        <action
+            android:id="@+id/action_habitCreateFragment_to_centralFragment"
+            app:destination="@id/CentralFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/InfoFragment"
+        android:label="Info"
+        tools:layout="@layout/fragment_info"
+        android:name="course.doubletapp.habittracker.ui.information.InfoFragment">
+    </fragment>
+
+</navigation>

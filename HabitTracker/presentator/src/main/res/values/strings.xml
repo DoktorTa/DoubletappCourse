@@ -1,0 +1,65 @@
+<resources>
+
+<!--  HabitAppInfo  -->
+    <string name="app_name">HabitTracker</string>
+
+<!--  DrawerLayout  -->
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+
+<!--  FragmentCreateHabit  -->
+    <string name="period_text">Recurrence period</string>
+    <string name="description">Description</string>
+    <string name="name_habit">Name habit</string>
+    <string name="count_text">Count day</string>
+    <string name="type_text">Type</string>
+    <string name="priority_text">Priority</string>
+    <string name="cansel">CANSEL</string>
+    <string name="ok">OK</string>
+    <string name="color_picker_stub">HSV: \nHEX: \nINT: </string>
+
+<!--  HabitListFragment  -->
+    <string name="habit_menu_remove">Remove</string>
+    <string name="habit_menu_complete">Complete</string>
+    <string name="habit_menu_edit">Edit</string>
+    <string name="habit_remove_dialog_ok">OK</string>
+    <string name="habit_remove_dialog_cansel">CANSEL</string>
+    <string name="habit_remove_dialog_msg">Want to remove a habit?</string>
+
+<!--  HabitViewHolder  -->
+    <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>
+
+<!--  ColorPickerHabit  -->
+    <string name="infoColor">INT: %1$s \nHEX: 0x%2$s \nHSV %3$s</string>
+
+<!--  PriorityHabit  -->
+    <string name="hardText">HARD</string>
+    <string name="mediumText">MEDIUM</string>
+    <string name="lowText">LOW</string>
+
+    <string name="goodText">GOOD</string>
+    <string name="badText">BAD</string>
+
+<!--  FilterBottomSheet  -->
+    <string name="header_bottom_sheet_filter">Filters</string>
+    <string name="hint_name_habit_filter">Filter by name habit</string>
+    <string name="hint_description_habit_filter">Filter by description habit</string>
+    <string name="priority_type_habit_all">ALL</string>
+    
+<!--  HabitListViewModel  -->
+    <string name="more_bad">Больше нельзя.</string>
+    <string name="more_good">Братан, хорош, давай, давай, вперёд! Привычка в кайф, можно еще! Вообще красавчик! Можно вот этого вот почаще?</string>
+    <string name="again_bad">Можно сделать еще %1$s раз.</string>
+    <string name="again_good">Еще раз %1$s надо.</string>
+
+<!--  InfoFragment  -->
+    <string name="info_text">Пользователь с устройства %1$s открыл приложение.</string>
+
+<!--  InfoMenu  -->
+    <string name="menu_habit_name">Habit</string>
+    <string name="menu_info_app">Info</string>
+
+<!--  Other  -->
+    <string name="default_text">DEFAULT TEXT</string>
+
+</resources>

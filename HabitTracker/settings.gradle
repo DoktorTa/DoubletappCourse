@@ -13,4 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "HabitTracker"
-include ':app'
+include ':presentator'
+
+include ':domain'
+include ':data'
