@@ -1,6 +1,5 @@
 package course.doubletapp.habittracker.data.repository
 
-import android.util.Log
 import course.doubletapp.habittracker.data.db.HabitDao
 import course.doubletapp.habittracker.data.db.HabitEntity
 import course.doubletapp.habittracker.domain.repository.IRepository

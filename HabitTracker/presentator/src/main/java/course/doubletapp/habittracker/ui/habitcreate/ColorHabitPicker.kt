@@ -18,10 +18,21 @@ class ColorPicker(
     private val colorSelectedSquare: View,
     private val aboutColorText: View
 ) {
-    var selectedColor: Int? = null
-    private val colors: List<Int> = (0 until 16).map{
-        Color.HSVToColor(floatArrayOf(360f / 16f * (it + 1) - 360f / 16f / 2f, 0.9f, 1f))
+
+    companion object {
+        private const val SATURATION = 0.9f
+        private const val BRIGHTNESS = 1f
+
+        private const val COUNT_SQUARE = 16
     }
+
+    var selectedColor: Int? = null
+
+    private val colors: List<Int> = (0 until COUNT_SQUARE).map{
+        Color.HSVToColor(floatArrayOf(
+            360f / COUNT_SQUARE * (it + 1) - 360f / COUNT_SQUARE / 2f,
+            SATURATION,
+            BRIGHTNESS))    }
 
     init {
         generateGradient()
@@ -44,7 +55,7 @@ class ColorPicker(
     private fun generateGradientArray(): IntArray{
         return (0..360).step(60)
             .map { it.toFloat() }
-            .map { floatArrayOf(it, 0.9f, 1f) }
+            .map { floatArrayOf(it, SATURATION, BRIGHTNESS) }
             .map { Color.HSVToColor(it) }
             .toIntArray()
     }
@@ -56,9 +67,9 @@ class ColorPicker(
     }
 
     private fun generateInfoBySelectedColor(){
-        var intColor: String = "0"
-        var hexColor: String = "0x0"
-        var hsvColor: String = "(0 ,0, 0)"
+        var intColor: String = context.getString(R.string.int_default)
+        var hexColor: String = context.getString(R.string.hex_default)
+        var hsvColor: String = context.getString(R.string.hsv_default)
 
         if (selectedColor != null) {
             intColor = selectedColor.toString()
@@ -75,7 +86,6 @@ class ColorPicker(
 
         val editText = aboutColorText as TextView
         editText.text = info
-
     }
 
     private fun getHSVText(color: Int): String {
@@ -86,12 +96,17 @@ class ColorPicker(
         val sat = (hsv[1] * 100).toInt()
         val value = (hsv[2] * 100).toInt()
 
-        return "($hue, $sat, $value)"
+        return context.getString(
+            R.string.infoColor,
+            hue.toString(),
+            sat.toString(),
+            value.toString()
+        )
     }
 
     private fun generateRadioButton(color: String): AppCompatRadioButton{
         val radioButton = AppCompatRadioButton(context)
-        radioButton.setBackgroundResource(R.drawable.radio_selecter)
+        radioButton.setBackgroundResource(R.drawable.radio_selector)
         radioButton.buttonDrawable = null
         radioButton.layoutParams = getLayoutParams()
 

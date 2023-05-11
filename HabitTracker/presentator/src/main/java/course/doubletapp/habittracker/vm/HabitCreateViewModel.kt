@@ -1,10 +1,12 @@
 package course.doubletapp.habittracker.vm
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import course.doubletapp.habittracker.domain.entity.Habit
 import course.doubletapp.habittracker.domain.entity.PriorityHabit
 import course.doubletapp.habittracker.domain.entity.TypeHabit
 import course.doubletapp.habittracker.domain.uc.HabitsUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HabitCreateViewModel @Inject constructor(
@@ -36,7 +38,9 @@ class HabitCreateViewModel @Inject constructor(
             doneDates = doneDate
         )
 
-        useCase.createHabit(habitNew)
+        viewModelScope.launch {
+            useCase.createHabit(habitNew)
+        }
     }
 
     fun getHabitByName(idHabit: String): Habit? {

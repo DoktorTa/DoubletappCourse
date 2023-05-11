@@ -17,5 +17,35 @@
     <dimen name="tile_margin">5dp</dimen>
     <dimen name="text_margin">5dp</dimen>
     <dimen name="color_picker_margin">1dp</dimen>
-    
+
+<!--  ColorItem  -->
+    <dimen name="color_item_margin">10dp</dimen>
+    <dimen name="color_item_side_size">50dp</dimen>
+
+<!--  RadioSelector  -->
+    <dimen name="width_radio_button_square">3dp</dimen>
+
+<!--  HeaderInfoOnApp  -->
+    <dimen name="header_info_side_size_icon">50dp</dimen>
+
+<!--  HabitItem  -->
+    <dimen name="habit_item_text_left_margin">15dp</dimen>
+    <dimen name="habit_item_margin">5dp</dimen>
+    <dimen name="habit_item_info_margin_top">12dp</dimen>
+    <dimen name="habit_item_color_size">15dp</dimen>
+    <dimen name="habit_item_color_margin">2dp</dimen>
+
+<!--  HabitListFragment  -->
+    <dimen name="habit_list_padding_bottom">133dp</dimen>
+
+<!--  BottomSheet  -->
+    <dimen name="bottom_sheet_button_margin">15dp</dimen>
+
+<!--  CentralFragment  -->
+    <dimen name="central_fragment_viewpager_layout_margin_top">48dp</dimen>
+    <dimen name="central_fragment_fab_layout_margin">28dp</dimen>
+    <dimen name="central_fragment_behavior_peek_height">54dp</dimen>
+
+<!--  Other  -->
+    <dimen name="separation_line_size">1dp</dimen>
 </resources>
