@@ -10,7 +10,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="@dimen/header_info_side_size_icon"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/app_name_left_margin">
@@ -18,8 +18,9 @@
         <ImageView
 
             android:id="@+id/avatar"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="@dimen/header_info_side_size_icon"
+            android:layout_height="@dimen/header_info_side_size_icon"
+            android:contentDescription="@string/avataar" />
 
     </com.google.android.material.card.MaterialCardView>
 

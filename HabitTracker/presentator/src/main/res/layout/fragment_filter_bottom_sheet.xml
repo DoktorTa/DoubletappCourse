@@ -15,7 +15,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/separation_line_size"
         android:background="?attr/colorPrimary"/>
 
     <EditText
@@ -60,11 +60,11 @@
 
         <Button
             android:id="@+id/resetButton"
-            android:text="RESET"
+            android:text="@string/reset_button_text"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/bottom_sheet_button_margin"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"/>
     </RelativeLayout>

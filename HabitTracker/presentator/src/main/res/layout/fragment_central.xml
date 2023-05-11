@@ -23,7 +23,7 @@
             android:id="@+id/viewPager2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="@dimen/central_fragment_viewpager_layout_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,14 +36,13 @@
         android:id="@+id/create_habit_FAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="28dp"
-        android:contentDescription="123"
+        android:layout_margin="@dimen/central_fragment_fab_layout_margin"
         android:src="@drawable/ic_baseline_add_24"
         app:fabSize="normal"
         app:layout_anchor="@id/bottom_sheet"
-        app:layout_anchorGravity="end|top" />
+        app:layout_anchorGravity="end|top"
+        android:contentDescription="@string/fab" />
 
-<!--    android:name="course.doubletapp.habittracker.ui.FilterBottomSheet"-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/bottom_sheet"
@@ -51,7 +50,7 @@
         style="?attr/bottomSheetStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:behavior_peekHeight="54dp"
+        app:behavior_peekHeight="@dimen/central_fragment_behavior_peek_height"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         tools:layout="@layout/fragment_filter_bottom_sheet"
         tools:ignore="MissingConstraints" />

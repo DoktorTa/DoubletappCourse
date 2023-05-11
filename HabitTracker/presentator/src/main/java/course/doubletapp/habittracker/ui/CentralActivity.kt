@@ -3,7 +3,6 @@ package course.doubletapp.habittracker.ui
 import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -13,7 +12,6 @@ import com.bumptech.glide.Glide
 import course.doubletapp.habittracker.R
 import androidx.navigation.ui.setupActionBarWithNavController
 import course.doubletapp.habittracker.databinding.ActivityCentralBinding
-import kotlinx.coroutines.launch
 
 class CentralActivity: AppCompatActivity() {
 
@@ -47,14 +45,14 @@ class CentralActivity: AppCompatActivity() {
     }
 
     private fun loadAvatarImage(activity: Activity){
-        lifecycleScope.launch {
-            Glide.with(activity)
-                .load(urlImage)
-                .centerCrop()
-                .override(50, 50)
-                .placeholder(R.drawable.ic_baseline_account_circle_24)
-                .into(binding.navView.getHeaderView(0).findViewById(R.id.avatar))
-        }
+//        lifecycleScope.launch {
+        Glide.with(activity)
+            .load(urlImage)
+            .centerCrop()
+            .override(50, 50)
+            .placeholder(R.drawable.ic_baseline_account_circle_24)
+            .into(binding.navView.getHeaderView(0).findViewById(R.id.avatar))
+//        }
     }
 
     companion object {

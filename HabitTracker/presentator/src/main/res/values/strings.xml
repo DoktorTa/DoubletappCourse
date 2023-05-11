@@ -30,6 +30,10 @@
     <string name="infoHabit">[priority -  %1$s; type -  %2$s; count -  %3$s; period -  %4$s day]</string>
 
 <!--  ColorPickerHabit  -->
+    <string name="int_default">0</string>
+    <string name="hex_default">0x0</string>
+    <string name="hsv_default">(0, 0, 0)</string>
+    <string name="hsv_format">(%1$s, %2$s, %3$s)</string>
     <string name="infoColor">INT: %1$s \nHEX: 0x%2$s \nHSV %3$s</string>
 
 <!--  PriorityHabit  -->
@@ -45,6 +49,7 @@
     <string name="hint_name_habit_filter">Filter by name habit</string>
     <string name="hint_description_habit_filter">Filter by description habit</string>
     <string name="priority_type_habit_all">ALL</string>
+    <string name="reset_button_text">RESET</string>
     
 <!--  HabitListViewModel  -->
     <string name="more_bad">Больше нельзя.</string>
@@ -59,7 +64,14 @@
     <string name="menu_habit_name">Habit</string>
     <string name="menu_info_app">Info</string>
 
+<!--  HabitItemDefault  -->
+    <string name="habit_name_default">Habit name</string>
+    <string name="habit_description_default">Description</string>
+    <string name="habit_info_default">[priority - low; type - good; count - 7; period - 1 day]</string>
+
 <!--  Other  -->
     <string name="default_text">DEFAULT TEXT</string>
+    <string name="avataar">Avatar</string>
+    <string name="fab">FAB</string>
 
 </resources>
